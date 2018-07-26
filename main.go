@@ -2,12 +2,20 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
-	"os"
-	"strings"
 
 	"google.golang.org/appengine" // Required external App Engine library
 )
+
+var (
+	indexTemplate = template.Must(template.ParseFiles("index.html"))
+)
+
+type templateParams struct {
+	Notice string
+	Name   string
+}
 
 func main() {
 	http.HandleFunc("/", indexHandler)
@@ -23,5 +31,34 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintln(w, strings.Title(os.Getenv("GREETING")), "!")
+	// fmt.Fprintln(w, strings.Title(os.Getenv("GREETING")), "!")
+
+	params := templateParams{}
+
+	if r.Method == "GET" {
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	// It's a POST request, so handle the form submission.
+
+	name := r.FormValue("name")
+	params.Name = name // Preserve the name field.
+	if name == "" {
+		name = "Anonymous Gopher"
+	}
+
+	if r.FormValue("message") == "" {
+		w.WriteHeader(http.StatusBadRequest)
+
+		params.Notice = "No message provided"
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	// TODO: save the message into a database.
+
+	params.Notice = fmt.Sprintf("Thank you for your submission, %s!", name)
+
+	indexTemplate.Execute(w, params)
 }
