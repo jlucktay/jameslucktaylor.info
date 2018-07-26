@@ -17,6 +17,13 @@ handlers:
   secure: always
   static_dir: static
 
+# Find file in static directory
+- url: /robots.txt
+  redirect_http_response_code: 301
+  secure: always
+  static_files: static/robots.txt
+  upload: static/robots.txt
+
 # All other URLs are handled by the Go application script
 - url: /.*
   redirect_http_response_code: 301
