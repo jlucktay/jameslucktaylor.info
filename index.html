@@ -25,6 +25,14 @@
         </div>
         <input type="submit">
     </form>
+
+    {{with .Posts}}
+    <ol>
+        {{range .}}
+        <li><cite>{{.Author}}</cite><p>{{.Message}}</p></li>
+        {{end}}
+    </ol>
+    {{end}}
 </body>
 
 </html>

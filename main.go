@@ -4,17 +4,29 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"time"
 
 	"google.golang.org/appengine" // Required external App Engine library
+	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/log"
 )
 
 var (
 	indexTemplate = template.Must(template.ParseFiles("index.html"))
 )
 
+type post struct {
+	Author  string
+	Message string
+	Posted  time.Time
+}
+
 type templateParams struct {
-	Notice string
-	Name   string
+	Notice  string
+	Name    string
+	Message string
+
+	Posts []post
 }
 
 func main() {
@@ -33,7 +45,18 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// fmt.Fprintln(w, strings.Title(os.Getenv("GREETING")), "!")
 
+	ctx := appengine.NewContext(r)
 	params := templateParams{}
+
+	q := datastore.NewQuery("Post").Order("-Posted").Limit(20)
+
+	if _, err := q.GetAll(ctx, &params.Posts); err != nil {
+		log.Errorf(ctx, "Getting posts: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		params.Notice = "Couldn't get latest posts. Refresh?"
+		indexTemplate.Execute(w, params)
+		return
+	}
 
 	if r.Method == "GET" {
 		indexTemplate.Execute(w, params)
@@ -41,14 +64,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// It's a POST request, so handle the form submission.
-
-	name := r.FormValue("name")
-	params.Name = name // Preserve the name field.
-	if name == "" {
-		name = "Anonymous Gopher"
+	p := post{
+		Author:  r.FormValue("name"),
+		Message: r.FormValue("message"),
+		Posted:  time.Now(),
 	}
 
-	if r.FormValue("message") == "" {
+	if p.Author == "" {
+		p.Author = "Anonymous Gopher"
+	}
+
+	params.Name = p.Author
+
+	if p.Message == "" {
 		w.WriteHeader(http.StatusBadRequest)
 
 		params.Notice = "No message provided"
@@ -56,9 +84,21 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// TODO: save the message into a database.
+	key := datastore.NewIncompleteKey(ctx, "Post", nil)
 
-	params.Notice = fmt.Sprintf("Thank you for your submission, %s!", name)
+	if _, err := datastore.Put(ctx, key, &p); err != nil {
+		log.Errorf(ctx, "datastore.Put: %v", err)
 
+		w.WriteHeader(http.StatusInternalServerError)
+		params.Notice = "Couldn't add new post. Try again?"
+		params.Message = p.Message // Preserve their message so they can try again.
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	// Prepend the post that was just added.
+	params.Posts = append([]post{p}, params.Posts...)
+
+	params.Notice = fmt.Sprintf("Thank you for your submission, %s!", p.Author)
 	indexTemplate.Execute(w, params)
 }
