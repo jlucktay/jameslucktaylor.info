@@ -11,13 +11,13 @@ env_variables:
 
 handlers:
 
-# Find file in static directory
+# Find the static files in the 'static' directory
 - url: /static
   redirect_http_response_code: 301
   secure: always
   static_dir: static
 
-# Find file in static directory
+# The 'robots.txt' file is also static
 - url: /robots.txt
   redirect_http_response_code: 301
   secure: always
