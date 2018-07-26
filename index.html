@@ -7,6 +7,28 @@
     <title>
         James Lucktaylor - Info
     </title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "<secrets.json>",
+            authDomain: "jameslucktaylor-info.firebaseapp.com",
+            databaseURL: "https://jameslucktaylor-info.firebaseio.com",
+            messagingSenderId: "<secrets.json>",
+            projectId: "jameslucktaylor-info",
+            storageBucket: "jameslucktaylor-info.appspot.com"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.6.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.2/firebaseui.css" />
+
+    <script src="/static/index.js"></script>
 </head>
 
 <body>
@@ -14,22 +36,31 @@
 
     <img alt="GCP Gopher" id="logo" src="/static/gcp-gopher.svg" width="100" />
 
+    <div id="firebaseui-auth-container"></div>
+
+    <div id="sign-in"></div>
+    <div>
+        <span id="account-details"></span>
+        <button id="sign-out" hidden=true>Sign Out</button>
+    </div>
+
     {{with .Notice}}<div id="notice">{{.}}</div>{{end}}
 
-    <form action="/" method="post">
-        <div>Name:
-            <input name="name" value="{{.Name}}">
-        </div>
+    <form id="post-form" action="/" method="post" hidden=true>
         <div>Message:
-            <input name="message">
+            <input name="message" value="{{.Message}}" />
         </div>
-        <input type="submit">
+        <input type="hidden" name="token" id="token" />
+        <input type="submit" />
     </form>
 
     {{with .Posts}}
     <ol>
         {{range .}}
-        <li><cite>{{.Author}}</cite><p>{{.Message}}</p></li>
+        <li>
+            <cite>{{.Author}}</cite>
+            <p>{{.Message}}</p>
+        </li>
         {{end}}
     </ol>
     {{end}}

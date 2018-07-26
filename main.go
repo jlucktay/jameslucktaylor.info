@@ -6,17 +6,24 @@ import (
 	"net/http"
 	"time"
 
-	"google.golang.org/appengine" // Required external App Engine library
+	firebase "firebase.google.com/go"
+	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
 )
 
 var (
+	firebaseConfig = &firebase.Config{
+		DatabaseURL:   "https://jameslucktaylor-info.firebaseio.com",
+		ProjectID:     "jameslucktaylor-info",
+		StorageBucket: "jameslucktaylor-info.appspot.com",
+	}
 	indexTemplate = template.Must(template.ParseFiles("index.html"))
 )
 
 type post struct {
 	Author  string
+	UserID  string
 	Message string
 	Posted  time.Time
 }
@@ -25,8 +32,7 @@ type templateParams struct {
 	Notice  string
 	Name    string
 	Message string
-
-	Posts []post
+	Posts   []post
 }
 
 func main() {
@@ -64,21 +70,55 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// It's a POST request, so handle the form submission.
-	p := post{
-		Author:  r.FormValue("name"),
-		Message: r.FormValue("message"),
-		Posted:  time.Now(),
+	message := r.FormValue("message")
+
+	// Create a new Firebase App.
+	app, err := firebase.NewApp(ctx, firebaseConfig)
+	if err != nil {
+		params.Notice = "Couldn't authenticate. Try logging in again?"
+		params.Message = message // Preserve their message so they can try again.
+		indexTemplate.Execute(w, params)
+		return
 	}
 
-	if p.Author == "" {
-		p.Author = "Anonymous Gopher"
+	// Create a new authenticator for the app.
+	auth, err := app.Auth(ctx)
+	if err != nil {
+		params.Notice = "Couldn't authenticate. Try logging in again?"
+		params.Message = message // Preserve their message so they can try again.
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	// Verify the token passed in by the user is valid.
+	tok, err := auth.VerifyIDTokenAndCheckRevoked(ctx, r.FormValue("token"))
+	if err != nil {
+		params.Notice = "Couldn't authenticate. Try logging in again?"
+		params.Message = message // Preserve their message so they can try again.
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	// Use the validated token to get the user's information.
+	user, err := auth.GetUser(ctx, tok.UID)
+	if err != nil {
+		params.Notice = "Couldn't authenticate. Try logging in again?"
+		params.Message = message // Preserve their message so they can try again.
+		indexTemplate.Execute(w, params)
+		return
+	}
+
+	p := post{
+		UserID:  user.UID, // Include UserID in case Author isn't unique.
+		Author:  user.DisplayName,
+		Message: message,
+		Posted:  time.Now(),
 	}
 
 	params.Name = p.Author
 
 	if p.Message == "" {
 		w.WriteHeader(http.StatusBadRequest)
-
 		params.Notice = "No message provided"
 		indexTemplate.Execute(w, params)
 		return
@@ -98,7 +138,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Prepend the post that was just added.
 	params.Posts = append([]post{p}, params.Posts...)
-
 	params.Notice = fmt.Sprintf("Thank you for your submission, %s!", p.Author)
 	indexTemplate.Execute(w, params)
 }

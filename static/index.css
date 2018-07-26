@@ -26,3 +26,10 @@ img#logo {
     margin-right: auto;
     width: 20%;
 }
+
+div.mdl-progress::after {
+    content: 'Authenticating...';
+    display: block;
+    margin: 30px auto;
+    text-align: center;
+}
