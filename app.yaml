@@ -11,7 +11,12 @@ env_variables:
 
 handlers:
 
-# Find file in static directory
+# If the path is empty, show static index.html file
+- url: /
+  static_files: index.html
+  upload: index.html
+
+# Otherwise, find file in static directory
 - url: /static
   static_dir: static
 
