@@ -28,6 +28,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Set up STS with 2 year max-age
+	w.Header().Add("Strict-Transport-Security", "max-age=63072000; includeSubDomains")
+
 	params := struct {
 		Greeting string
 	}{
