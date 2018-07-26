@@ -1,9 +1,17 @@
 package main
 
 import (
+	"fmt"
+	"html/template"
 	"net/http"
+	"os"
+	"strings"
 
 	"google.golang.org/appengine" // Required external App Engine library
+)
+
+var (
+	indexTemplate = template.Must(template.ParseFiles("index.html"))
 )
 
 func main() {
@@ -20,5 +28,15 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// fmt.Fprintln(w, strings.Title(os.Getenv("GREETING")), "!")
+	params := struct {
+		Greeting string
+	}{
+		fmt.Sprintf("%s!", strings.Title(os.Getenv("GREETING"))),
+	}
+
+	if r.Method == http.MethodGet {
+		indexTemplate.Execute(w, params)
+	} else {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
 }
