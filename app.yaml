@@ -1,0 +1,25 @@
+runtime: go
+api_version: go1
+
+default_expiration: "10m"
+
+env_variables:
+  GREETING: 'hello, world'
+
+# More stuff here:
+# https://cloud.google.com/appengine/docs/standard/go/config/appref
+
+handlers:
+
+# If the path is empty, show static index.html file
+- url: /
+  static_files: index.html
+  upload: index.html
+
+# Otherwise, find file in static directory
+- url: /static
+  static_dir: static
+
+# All other URLs are handled by the Go application script
+- url: /.*
+  script: _go_app
