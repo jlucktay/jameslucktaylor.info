@@ -13,8 +13,12 @@ handlers:
 
 # Find file in static directory
 - url: /static
+  redirect_http_response_code: 301
+  secure: always
   static_dir: static
 
 # All other URLs are handled by the Go application script
 - url: /.*
+  redirect_http_response_code: 301
+  secure: always
   script: _go_app
