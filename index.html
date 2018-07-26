@@ -3,6 +3,8 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/static/index.css" />
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
     <meta charset="utf-8" />
     <title>
         James Lucktaylor - Info
@@ -12,9 +14,25 @@
 <body>
     <h1>jameslucktaylor.info</h1>
 
-    <img alt="GCP Gopher" id="logo" src="/static/gcp-gopher.svg" width="100" />
+    <img alt="GCP Gopher" id="logo" src="/static/gcp-gopher.svg" title="This site runs on Google Cloud using Go in App Engine"
+        width="100" />
 
     <div id="greeting">{{.Greeting}}</div>
+
+    <div class="social">
+        <a href="//www.linkedin.com/in/jlucktay">
+            <i class="fab fa-linkedin fa-3x"></i>
+        </a>
+        <a href="//github.com/jlucktay">
+            <i class="fab fa-github fa-3x"></i>
+        </a>
+        <a href="//twitter.com/jlucktay">
+            <i class="fab fa-twitter fa-3x"></i>
+        </a>
+        <a href="//facebook.com/jlucktay">
+            <i class="fab fa-facebook fa-3x"></i>
+        </a>
+    </div>
 </body>
 
 </html>

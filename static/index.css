@@ -1,9 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('//fonts.googleapis.com/css?family=Roboto');
 
 * {
     font-family: 'Roboto', sans-serif;
-    list-style: upper-roman;
+    text-align: center;
     vertical-align: baseline;
+}
+
+a {
+    color: #fff;
+    text-decoration-line: none;
+}
+
+body {
+    background-color: #f70;
+    color: #fff;
 }
 
 div {
@@ -13,19 +23,20 @@ div {
 
 div#greeting {
     padding: 20px;
-    text-align: center;
 }
 
-body {
-    background-color: #f70;
-    color: #fff;
+div.social {
+    width: 100%;
 }
 
-h1 {
-    text-align: center;
+.fab {
+    padding: 5px;
 }
 
 img#logo {
+    border-color: #fff;
+    border-style: inset;
+    border-width: 3px;
     display: block;
     margin-left: auto;
     margin-right: auto;
