@@ -11,7 +11,13 @@ import (
 )
 
 var (
-	indexTemplate = template.Must(template.ParseFiles("index.html"))
+	htmlFuncs = template.FuncMap{
+		"comment": func(s string) template.HTML {
+			return template.HTML(s)
+		},
+	}
+
+	templates = template.Must(template.New("index.gohtml").Funcs(htmlFuncs).ParseFiles("index.gohtml", "favicon.html", "opengraph.html"))
 )
 
 func main() {
@@ -38,7 +44,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodGet {
-		indexTemplate.Execute(w, params)
+		templates.Execute(w, params)
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}

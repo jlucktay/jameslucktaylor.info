@@ -2,12 +2,19 @@
 <html lang="en-AU">
 
 <head>
-    <!-- Core CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/index.css" />
-
+    {{comment "<!-- Encoding -->"}}
     <meta charset="utf-8" />
 
-    <!-- Font Awesome -->
+    {{comment "<!-- Core CSS -->"}}
+    <link rel="stylesheet" type="text/css" href="/static/index.css" />
+
+    {{comment "<!-- This is favicon country -->"}}
+    {{template "favicon.html"}}
+
+    {{comment "<!-- Facebook Open Graph metadata -->"}}
+    {{template "opengraph.html"}}
+
+    {{comment "<!-- Font Awesome -->"}}
     <script defer src="//use.fontawesome.com/releases/v5.2.0/js/brands.js" integrity="sha384-4BRtleJgTYsMKIVuV1Z7lNE29r4MxwKR7u88TWG2GaXsmSljIykt/YDbmKndKGID"
         crossorigin="anonymous"></script>
     <script defer src="//use.fontawesome.com/releases/v5.2.0/js/fontawesome.js" integrity="sha384-QcnrgQuRmocjIBY6ByWMmDvUg3HO4MSdVjY7ynJwZfvTDhVPPQOUI9TRzc6/7ZO1"
