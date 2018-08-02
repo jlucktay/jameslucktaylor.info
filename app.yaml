@@ -13,12 +13,16 @@ handlers:
 
 # Find the static files in the 'static' directory
 - url: /static
+  http_headers:
+    Pragma: no-cache
   redirect_http_response_code: 301
   secure: always
   static_dir: static
 
 # Static favicon asset files
 - url: /(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
+  http_headers:
+    Pragma: no-cache
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/\1
@@ -26,6 +30,8 @@ handlers:
 
 # The 2x Apple icon files are also static (and identical)
 - url: /apple-touch-icon(-precomposed)?\.png$
+  http_headers:
+    Pragma: no-cache
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/apple-touch-icon.png
@@ -33,6 +39,8 @@ handlers:
 
 # The 'robots.txt' file is also static
 - url: /robots\.txt$
+  http_headers:
+    Pragma: no-cache
   redirect_http_response_code: 301
   secure: always
   static_files: static/robots.txt

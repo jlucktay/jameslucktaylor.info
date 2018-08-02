@@ -40,6 +40,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// Clickjacking defense
 	w.Header().Add("X-Frame-Options", "DENY")
 
+	// Caching
+	w.Header().Add("Cache-Control", "public, max-age=600")
+	w.Header().Add("Pragma", "no-cache")
+
 	params := struct {
 		Greeting string
 	}{
