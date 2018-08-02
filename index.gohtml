@@ -4,16 +4,12 @@
 <head>
     {{comment "<!-- Encoding -->"}}
     <meta charset="utf-8" />
-
     {{comment "<!-- Core CSS -->"}}
     <link rel="stylesheet" type="text/css" href="/static/index.css" />
-
     {{comment "<!-- This is favicon country -->"}}
     {{template "favicon.html"}}
-
     {{comment "<!-- Facebook Open Graph metadata -->"}}
     {{template "opengraph.html"}}
-
     {{comment "<!-- Font Awesome -->"}}
     <script defer src="//use.fontawesome.com/releases/v5.2.0/js/brands.js" integrity="sha384-4BRtleJgTYsMKIVuV1Z7lNE29r4MxwKR7u88TWG2GaXsmSljIykt/YDbmKndKGID"
         crossorigin="anonymous"></script>
@@ -34,16 +30,16 @@
     <div id="greeting">{{.Greeting}}</div>
 
     <div class="social">
-        <a href="//www.linkedin.com/in/jlucktay">
+        <a href="//www.linkedin.com/in/jlucktay" title="LinkedIn">
             <i class="fab fa-linkedin fa-3x"></i>
         </a>
-        <a href="//github.com/jlucktay">
+        <a href="//github.com/jlucktay" title="GitHub">
             <i class="fab fa-github fa-3x"></i>
         </a>
-        <a href="//twitter.com/jlucktay">
+        <a href="//twitter.com/jlucktay" title="Twitter">
             <i class="fab fa-twitter fa-3x"></i>
         </a>
-        <a href="//facebook.com/jlucktay">
+        <a href="//facebook.com/jlucktay" title="Facebook">
             <i class="fab fa-facebook fa-3x"></i>
         </a>
     </div>
