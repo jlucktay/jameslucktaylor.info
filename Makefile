@@ -26,6 +26,7 @@ validate-web:
 
 zap:
 	/Applications/OWASP\ ZAP.app/Contents/Java/zap.sh -cmd -quickurl http://jameslucktaylor.info
+	# TODO: send output through parser (https://yq.readthedocs.io/en/latest/) and make it more succinct
 
 lighthouse-install:
 	npm update -g lighthouse
