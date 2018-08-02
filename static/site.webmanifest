@@ -1,5 +1,5 @@
 {
-    "background_color": "#ff7700",
+    "background_color": "#8F4400",
     "display": "standalone",
     "icons": [
         {
@@ -15,5 +15,5 @@
     ],
     "name": "",
     "short_name": "",
-    "theme_color": "#ff7700"
+    "theme_color": "#8F4400"
 }
