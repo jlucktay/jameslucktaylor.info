@@ -34,15 +34,23 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Caching
+	w.Header().Add("Cache-Control", "public, max-age=600")
+	w.Header().Add("Pragma", "no-cache")
+
+	// The remaining headers are all security-focused
+
 	// Set up STS with 2 year max-age
 	w.Header().Add("Strict-Transport-Security", "max-age=63072000; includeSubDomains")
+
+	// Opt-out of MIME type sniffing
+	w.Header().Add("X-Content-Type-Options", "nosniff")
 
 	// Clickjacking defense
 	w.Header().Add("X-Frame-Options", "DENY")
 
-	// Caching
-	w.Header().Add("Cache-Control", "public, max-age=600")
-	w.Header().Add("Pragma", "no-cache")
+	// Ensure that the web browser's XSS filter is enabled
+	w.Header().Add("X-XSS-Protection", "1; mode=block")
 
 	params := struct {
 		Greeting string

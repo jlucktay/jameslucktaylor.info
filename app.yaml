@@ -15,6 +15,7 @@ handlers:
 - url: /static
   http_headers:
     Pragma: no-cache
+    X-Content-Type-Options: nosniff
   redirect_http_response_code: 301
   secure: always
   static_dir: static
@@ -23,6 +24,7 @@ handlers:
 - url: /(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
   http_headers:
     Pragma: no-cache
+    X-Content-Type-Options: nosniff
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/\1
@@ -32,6 +34,7 @@ handlers:
 - url: /apple-touch-icon(-precomposed)?\.png$
   http_headers:
     Pragma: no-cache
+    X-Content-Type-Options: nosniff
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/apple-touch-icon.png
@@ -41,6 +44,7 @@ handlers:
 - url: /robots\.txt$
   http_headers:
     Pragma: no-cache
+    X-Content-Type-Options: nosniff
   redirect_http_response_code: 301
   secure: always
   static_files: static/robots.txt
