@@ -3,7 +3,7 @@ default: deploy test
 full: deploy validate test
 
 deploy:
-	gcloud app deploy
+	gcloud app deploy --quiet
 
 dev:
 	dev_appserver.py app.yaml
