@@ -21,14 +21,14 @@ handlers:
   static_dir: static
 
 # Static favicon asset files
-- url: /(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
+- url: /(browserconfig\.xml|favicon\.ico)$
   http_headers:
     Pragma: no-cache
     X-Content-Type-Options: nosniff
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/\1
-  upload: static/favicon/(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
+  upload: static/favicon/(browserconfig\.xml|favicon\.ico)$
 
 # The 2x Apple icon files are also static (and identical)
 - url: /apple-touch-icon(-precomposed)?\.png$
