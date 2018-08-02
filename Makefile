@@ -1,9 +1,9 @@
 default: deploy test
 
 clean:
-	rm -f jameslucktaylor.info_*.report.html
+	rm -fv jameslucktaylor.info_*.report.html
 
-full: deploy validate test
+full: deploy validate-web validate-lighthouse test
 
 deploy:
 	gcloud app deploy --quiet
@@ -14,11 +14,13 @@ dev:
 test:
 	hey -z 3s http://jameslucktaylor.info
 
-validate: lighthouse-install
+validate-lighthouse: lighthouse-install
+	lighthouse https://jameslucktaylor.info --view
+
+validate-web:
 	open "https://validator.w3.org/unicorn/check?ucn_uri=jameslucktaylor.info"
 	open "https://www.ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info&clearCache=on"
 	open "https://realfavicongenerator.net/favicon_checker?protocol=https&site=jameslucktaylor.info"
-	lighthouse https://jameslucktaylor.info --view
 
 zap:
 	/Applications/OWASP\ ZAP.app/Contents/Java/zap.sh -cmd -quickurl http://jameslucktaylor.info
