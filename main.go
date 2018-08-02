@@ -26,31 +26,13 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	// if statement redirects all invalid URLs to the root homepage.
-	// Ex: if URL is http://[YOUR_PROJECT_ID].appspot.com/FOO, it will be
-	// redirected to http://[YOUR_PROJECT_ID].appspot.com.
+	// Redirects all invalid/unhandled URLs to the root homepage
 	if r.URL.Path != "/" {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 
-	// Caching
-	w.Header().Add("Cache-Control", "public, max-age=600")
-	w.Header().Add("Pragma", "no-cache")
-
-	// The remaining headers are all security-focused
-
-	// Set up STS with 2 year max-age
-	w.Header().Add("Strict-Transport-Security", "max-age=63072000; includeSubDomains")
-
-	// Opt-out of MIME type sniffing
-	w.Header().Add("X-Content-Type-Options", "nosniff")
-
-	// Clickjacking defense
-	w.Header().Add("X-Frame-Options", "DENY")
-
-	// Ensure that the web browser's XSS filter is enabled
-	w.Header().Add("X-XSS-Protection", "1; mode=block")
+	addHeaders(w)
 
 	params := struct {
 		Greeting string
@@ -62,5 +44,23 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		templates.Execute(w, params)
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
+func addHeaders(w http.ResponseWriter) {
+	headers := map[string]string{
+		// Caching
+		"Cache-Control": "no-cache, no-store, must-revalidate",
+		"Pragma":        "no-cache",
+
+		// Security
+		"Strict-Transport-Security": "max-age=63072000; includeSubDomains", // Set up STS with 2 year max-age
+		"X-Content-Type-Options":    "nosniff",                             // Opt-out of MIME type sniffing
+		"X-Frame-Options":           "DENY",                                // Clickjacking defense
+		"X-XSS-Protection":          "1; mode=block",                       // Ensure the browser's XSS filter is enabled
+	}
+
+	for k, v := range headers {
+		w.Header().Add(k, v)
 	}
 }
