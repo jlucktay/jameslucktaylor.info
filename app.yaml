@@ -17,19 +17,19 @@ handlers:
   secure: always
   static_dir: static
 
-# The 'apple-touch-icon.png' file is also static
-- url: /apple-touch-icon(-precomposed)?\.png$
-  redirect_http_response_code: 301
-  secure: always
-  static_files: static/favicon/apple-touch-icon.png
-  upload: static/favicon/apple-touch-icon.png
-
 # Static favicon asset files
 - url: /(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
   redirect_http_response_code: 301
   secure: always
   static_files: static/favicon/\1
   upload: static/favicon/(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
+
+# The 'apple-touch-icon.png' and 'apple-touch-icon-precomposed.png' files are also static (and identical)
+- url: /apple-touch-icon(-precomposed)?\.png$
+  redirect_http_response_code: 301
+  secure: always
+  static_files: static/favicon/apple-touch-icon.png
+  upload: static/favicon/apple-touch-icon.png
 
 # The 'robots.txt' file is also static
 - url: /robots\.txt$
