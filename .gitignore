@@ -13,3 +13,6 @@
 
 # Secrets
 secrets.json
+
+# Lighthouse reports
+jameslucktaylor.info_*.report.html
