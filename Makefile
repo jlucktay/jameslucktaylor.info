@@ -5,6 +5,8 @@ clean:
 
 full: deploy validate-web validate-lighthouse test
 
+kitchen-sink: deploy validate-web validate-lighthouse test zap clean
+
 deploy:
 	gcloud app deploy --quiet
 
