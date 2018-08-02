@@ -24,7 +24,7 @@ handlers:
   static_files: static/favicon/\1
   upload: static/favicon/(browserconfig\.xml|favicon(\.ico|-[13][26]x[13][26]\.png))$
 
-# The 'apple-touch-icon.png' and 'apple-touch-icon-precomposed.png' files are also static (and identical)
+# The 2x Apple icon files are also static (and identical)
 - url: /apple-touch-icon(-precomposed)?\.png$
   redirect_http_response_code: 301
   secure: always
