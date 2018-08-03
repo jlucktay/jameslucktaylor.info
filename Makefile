@@ -3,7 +3,9 @@ default: deploy test
 clean:
 	rm -fv jameslucktaylor.info_*.report.html
 
-full: deploy validate-web validate-lighthouse test
+full: deploy validate-web validate-lighthouse test clean
+
+validate: validate-web validate-lighthouse test clean
 
 kitchen-sink: deploy validate-web validate-lighthouse test zap clean
 
