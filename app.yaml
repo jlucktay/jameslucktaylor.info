@@ -4,7 +4,7 @@ api_version: go1
 default_expiration: "10m"
 
 env_variables:
-  GREETING: 'hello, world'
+  GREETING: 'Hello, world'
 
 # More stuff here:
 # https://cloud.google.com/appengine/docs/standard/go/config/appref

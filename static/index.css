@@ -35,8 +35,8 @@ div.social {
 
 img#logo {
     border-color: #fff;
-    border-style: inset;
-    border-width: 3px;
+    border-style: dashed;
+    border-width: 1px;
     display: block;
     margin-left: auto;
     margin-right: auto;

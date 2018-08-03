@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-	"strings"
 
 	"google.golang.org/appengine" // Required external App Engine library
 )
@@ -37,7 +36,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	params := struct {
 		Greeting string
 	}{
-		fmt.Sprintf("%s!", strings.Title(os.Getenv("GREETING"))),
+		fmt.Sprintf("%s!", os.Getenv("GREETING")),
 	}
 
 	if r.Method == http.MethodGet {
