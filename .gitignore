@@ -20,6 +20,9 @@
 
 # End of https://www.gitignore.io/api/go
 
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
 # Secrets
 secrets.json
 
