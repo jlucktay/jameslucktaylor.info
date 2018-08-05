@@ -53,10 +53,10 @@ func addHeaders(w http.ResponseWriter) {
 		"Pragma":        "no-cache",
 
 		// Security
-		"Strict-Transport-Security": "max-age=63072000; includeSubDomains", // Set up STS with 2 year max-age
-		"X-Content-Type-Options":    "nosniff",                             // Opt-out of MIME type sniffing
-		"X-Frame-Options":           "DENY",                                // Clickjacking defense
-		"X-XSS-Protection":          "1; mode=block",                       // Ensure the browser's XSS filter is enabled
+		"Strict-Transport-Security": "max-age=300; includeSubDomains", // Set up STS with 5 minute max-age
+		"X-Content-Type-Options":    "nosniff",                        // Opt-out of MIME type sniffing
+		"X-Frame-Options":           "DENY",                           // Clickjacking defense
+		"X-XSS-Protection":          "1; mode=block",                  // Ensure the browser's XSS filter is enabled
 	}
 
 	for k, v := range headers {
