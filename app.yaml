@@ -1,5 +1,6 @@
 runtime: go
 api_version: go1
+env: standard
 
 default_expiration: "10m"
 
