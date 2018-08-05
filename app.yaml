@@ -7,6 +7,18 @@ default_expiration: "10m"
 env_variables:
   GREETING: 'Hello, world'
 
+instance_class: F1
+automatic_scaling:
+  # max_concurrent_requests:
+  max_idle_instances: 0
+  # max_instances: 0 # Zero disables this setting
+  # max_pending_latency:
+  # min_idle_instances:
+  min_instances: 0 # Note that you are charged for the number of instances specified whether they are receiving traffic or not
+  # min_pending_latency:
+  target_cpu_utilization: 0.95
+  target_throughput_utilization: 0.95
+
 # More stuff here:
 # https://cloud.google.com/appengine/docs/standard/go/config/appref
 
