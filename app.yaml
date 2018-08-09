@@ -5,7 +5,7 @@ env: standard
 default_expiration: "10m"
 
 env_variables:
-  GREETING: 'Hello, world'
+  GREETING: 'Hello, world! o/'
 
 instance_class: F1
 automatic_scaling:

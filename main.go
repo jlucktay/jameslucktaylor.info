@@ -36,7 +36,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	params := struct {
 		Greeting string
 	}{
-		fmt.Sprintf("%s!", os.Getenv("GREETING")),
+		fmt.Sprintf("%s", os.Getenv("GREETING")),
 	}
 
 	if r.Method == http.MethodGet {
