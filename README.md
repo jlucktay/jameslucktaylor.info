@@ -50,6 +50,7 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 ## TODO
 
+- [Terraform](https://terraform.io) the Google Cloud infrastructure behind the site
 - Add the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header
 - Configure [warmup requests](https://cloud.google.com/appengine/docs/standard/go/warmup-requests/configuring) to improve performance
 - Slim down Font Awesome to just a few characters, rather than the whole library
