@@ -6,8 +6,8 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 ## Checks
 
-[![SSL Rating](https://sslbadge.org/?domain=jameslucktaylor.info)](https://www.ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info)
-[![Why No Padlock?](https://img.shields.io/badge/Why%20No%20Padlock%3F-Pass-brightgreen.svg?style=plastic)](https://www.whynopadlock.com/results/c80ada01-1136-4321-9819-efab5b6c3205)
+[![SSL Rating](https://sslbadge.org/?domain=jameslucktaylor.info)](https://ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info)
+[![Why No Padlock?](https://img.shields.io/badge/Why%20No%20Padlock%3F-Pass-brightgreen.svg?style=plastic)](https://whynopadlock.com/results/c80ada01-1136-4321-9819-efab5b6c3205)
 
 ## Tools used
 
@@ -26,9 +26,9 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 #### Security
 
-- [OWASP Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project)
-- [Qualys SSL Labs - SSL Server Test](https://www.ssllabs.com/ssltest/)
-- [Why No Padlock?](https://www.whynopadlock.com)
+- [OWASP Zed Attack Proxy](https://owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project)
+- [Qualys SSL Labs - SSL Server Test](https://ssllabs.com/ssltest/)
+- [Why No Padlock?](https://whynopadlock.com)
 
 #### Performance
 

@@ -23,7 +23,7 @@ validate-lighthouse: lighthouse-install
 
 validate-web:
 	open "https://validator.w3.org/unicorn/check?ucn_uri=jameslucktaylor.info"
-	open "https://www.ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info&clearCache=on"
+	open "https://ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info&clearCache=on"
 	open "https://developers.google.com/speed/pagespeed/insights/?url=jameslucktaylor.info"
 	open "https://developers.facebook.com/tools/debug/og/object/?q=jameslucktaylor.info"
 	open "https://developers.facebook.com/tools/debug/sharing/?q=jameslucktaylor.info"

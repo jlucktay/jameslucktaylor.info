@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/go
+# Created by https://gitignore.io/api/go
 
 ### Go ###
 # Binaries for programs and plugins
@@ -18,7 +18,7 @@
 /vendor/
 /Godeps/
 
-# End of https://www.gitignore.io/api/go
+# End of https://gitignore.io/api/go
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
