@@ -7,6 +7,7 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 ## Checks
 
 [![SSL Rating](https://sslbadge.org/?domain=jameslucktaylor.info)](https://www.ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info)
+[![Why No Padlock?](https://img.shields.io/badge/Why%20No%20Padlock%3F-Pass-brightgreen.svg?style=plastic)](https://www.whynopadlock.com/results/c80ada01-1136-4321-9819-efab5b6c3205)
 
 ## Tools used
 
@@ -17,9 +18,9 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 ### Design
 
-- [Roboto - Google Fonts](https://fonts.google.com/specimen/Roboto)
 - [Font Awesome](https://fontawesome.com)
   - [SVG & JS](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=svg-with-js)
+- [Roboto - Google Fonts](https://fonts.google.com/specimen/Roboto)
 
 ### Validate
 
@@ -29,12 +30,19 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 - [Qualys SSL Labs - SSL Server Test](https://www.ssllabs.com/ssltest/)
 - [Why No Padlock?](https://www.whynopadlock.com)
 
+#### Performance
+
+- [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
+  - [Lighthouse: how to reduce render-blocking scripts](https://fly.io/articles/lighthouse-how-to-reduce-render-blocking-scripts/)
+
+#### Responsiveness
+
+- [hey](https://github.com/rakyll/hey)
+
 #### Functionality
 
 - [Favicon Checker](https://realfavicongenerator.net/favicon_checker)
-- [hey](https://github.com/rakyll/hey)
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
-  - [Lighthouse: how to reduce render-blocking scripts](https://fly.io/articles/lighthouse-how-to-reduce-render-blocking-scripts/)
 - [W3C Validator](http://validator.w3.org)
 
 ## TODO
