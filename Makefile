@@ -13,7 +13,7 @@ deploy:
 	gcloud app deploy --quiet
 
 dev:
-	dev_appserver.py app.yaml
+	dev_appserver.py app.yaml --support_datastore_emulator=true
 
 test:
 	hey -z 3s http://jameslucktaylor.info
