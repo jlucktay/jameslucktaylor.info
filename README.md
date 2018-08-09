@@ -47,3 +47,4 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
   - Roll some [automated testing](https://cloud.google.com/cloud-build/docs/configuring-builds/build-test-deploy-artifacts) into said pipeline
 - Configure [a CDN](https://cloud.google.com/cdn/docs/using-cdn) (and the [load balancing](https://cloud.google.com/load-balancing/docs/https/) pre-req) on Google Cloud
 - Finalise [HSTS preload](https://hstspreload.org/)
+- Send OWASP ZAP output through [a parser](https://yq.readthedocs.io/en/latest/) and make it more succinct
