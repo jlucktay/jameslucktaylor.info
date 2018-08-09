@@ -16,7 +16,7 @@ var (
 		},
 	}
 
-	templates = template.Must(template.New("index.gohtml").Funcs(htmlFuncs).ParseFiles("index.gohtml", "favicon.html", "opengraph.html"))
+	templates = template.Must(template.New("index.gohtml").Funcs(htmlFuncs).ParseFiles("index.gohtml", "favicon.html", "opengraph.html", "index.css"))
 )
 
 func main() {
