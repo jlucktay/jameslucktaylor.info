@@ -43,6 +43,9 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 #### Functionality
 
 - [Favicon Checker](https://realfavicongenerator.net/favicon_checker)
+- Facebook for Developers
+  - [Sharing Debugger](https://developers.facebook.com/tools/debug/sharing/)
+  - [Object Debugger](https://developers.facebook.com/tools/debug/og/object/)
 - [W3C Validator](http://validator.w3.org)
 
 ## TODO
