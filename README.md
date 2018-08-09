@@ -46,6 +46,7 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 - Facebook for Developers
   - [Sharing Debugger](https://developers.facebook.com/tools/debug/sharing/)
   - [Object Debugger](https://developers.facebook.com/tools/debug/og/object/)
+- [Google Developers - Open Graph structured data](https://developers.google.com/search/docs/guides/prototype)
 - [W3C Validator](http://validator.w3.org)
 
 ## TODO
