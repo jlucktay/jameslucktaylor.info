@@ -18,6 +18,9 @@ dev:
 test:
 	hey -z 3s http://jameslucktaylor.info
 
+validate-data:
+	curl --silent --header 'Accept: application/json' http://linter.structured-data.org/?url=https://jameslucktaylor.info | jq '.messages'
+
 validate-lighthouse: lighthouse-install
 	lighthouse https://jameslucktaylor.info --view
 
