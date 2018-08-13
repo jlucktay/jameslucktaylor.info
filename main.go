@@ -16,7 +16,7 @@ var (
 		},
 	}
 
-	templates = template.Must(template.New("index.gohtml").Funcs(htmlFuncs).ParseFiles("index.gohtml", "favicon.html", "opengraph.html", "roboto.css", "index.css"))
+	templates = template.Must(template.New("index.gohtml").Funcs(htmlFuncs).ParseFiles("index.gohtml", "favicon.html", "github.html", "opengraph.html", "roboto.css", "index.css"))
 )
 
 func main() {
