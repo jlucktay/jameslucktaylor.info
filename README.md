@@ -60,6 +60,7 @@ I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their 
 - Font-display rabbit hole (thanks to Lighthouse for highlighting this)
   - [A small explainer built for a talk on web fonts and performance](https://font-display.glitch.me)
   - [If you really dislike FOUT, `font-display: optional` might be your jam](https://css-tricks.com/really-dislike-fout-font-display-optional-might-jam/)
+  - [A comprehensive guide to font loading strategies](https://www.zachleat.com/web/comprehensive-webfonts/#font-display)
 
 ## TODO
 
