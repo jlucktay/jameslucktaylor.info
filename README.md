@@ -49,6 +49,10 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 - [Google Developers - Open Graph structured data](https://developers.google.com/search/docs/guides/prototype)
 - [W3C Validator](http://validator.w3.org)
 
+### Miscellaneous (blogs, articles, references)
+
+- [Font-display](https://font-display.glitch.me)
+
 ## TODO
 
 - [Terraform](https://terraform.io) the Google Cloud infrastructure behind the site
