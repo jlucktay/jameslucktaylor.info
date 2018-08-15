@@ -1,4 +1,4 @@
-# Created by https://gitignore.io/api/go
+# Created by https://gitignore.io/api/go,visualstudiocode
 
 ### Go ###
 # Binaries for programs and plugins
@@ -18,7 +18,14 @@
 /vendor/
 /Godeps/
 
-# End of https://gitignore.io/api/go
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# End of https://gitignore.io/api/go,visualstudiocode
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
