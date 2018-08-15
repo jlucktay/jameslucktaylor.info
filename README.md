@@ -4,6 +4,10 @@ My Go-powered website!
 
 Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.google.com/appengine/) under the [Go Standard Environment](https://cloud.google.com/appengine/docs/standard/go/).
 
+I have been tinkering with this site as a vehicle to learn some more web dev things, and am trying to put best practices and good security and industry standards and the like into place as I go.
+
+The page itself doesn't have very much functionality at all, just some links to me elsewhere on the web, and the real value in this project for me is (over-)engineering everything behind and around it.
+
 ## Checks
 
 [![SSL Rating](https://sslbadge.org/?domain=jameslucktaylor.info)](https://ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info)
@@ -34,7 +38,6 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 - [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
-  - [Lighthouse: how to reduce render-blocking scripts](https://fly.io/articles/lighthouse-how-to-reduce-render-blocking-scripts/)
 
 #### Responsiveness
 
@@ -51,7 +54,12 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
 
 ### Miscellaneous (blogs, articles, references)
 
-- [Font-display](https://font-display.glitch.me)
+I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their burroughs and [shaved quite a few yaks](https://www.youtube.com/watch?v=AbSehcT19u0) while working on this project. 😅
+
+- [Lighthouse: how to reduce render-blocking scripts](https://fly.io/articles/lighthouse-how-to-reduce-render-blocking-scripts/)
+- Font-display rabbit hole (thanks to Lighthouse for highlighting this)
+  - [A small explainer built for a talk on web fonts and performance](https://font-display.glitch.me)
+  - [If you really dislike FOUT, `font-display: optional` might be your jam](https://css-tricks.com/really-dislike-fout-font-display-optional-might-jam/)
 
 ## TODO
 
@@ -62,6 +70,6 @@ Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.
   - [Performance & Font Awesome](https://fontawesome.com/how-to-use/on-the-web/other-topics/performance)
 - Set up a [CI/CD pipeline with Cloud Build](https://cloud.google.com/community/tutorials/automated-publishing-cloud-build)
   - Roll some [automated testing](https://cloud.google.com/cloud-build/docs/configuring-builds/build-test-deploy-artifacts) into said pipeline
-- Configure [a CDN](https://cloud.google.com/cdn/docs/using-cdn) (and the [load balancing](https://cloud.google.com/load-balancing/docs/https/) pre-req) on Google Cloud
+- Configure [a CDN](https://cloud.google.com/cdn/docs/using-cdn) (and the [load balancing](https://cloud.google.com/load-balancing/docs/https/) pre-requisite) on Google Cloud
 - Finalise [HSTS preload](https://hstspreload.org/)
 - Send OWASP ZAP output through [a parser](https://yq.readthedocs.io/en/latest/) and make it more succinct
