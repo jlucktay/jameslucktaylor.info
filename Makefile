@@ -13,7 +13,7 @@ test:
 prune-old-versions:
 	gcloud app versions delete $(shell gcloud app versions list --format="json" | jq -r '[ .[] | select(.traffic_split == 0) | .id ] | join(" ")') --quiet
 
-clean:
+clean: prune-old-versions
 	rm -fv jameslucktaylor.info_*.report.html
 
 full: deploy validate-web validate-lighthouse test clean
