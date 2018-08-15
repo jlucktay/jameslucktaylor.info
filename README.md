@@ -74,3 +74,6 @@ I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their 
 - Configure [a CDN](https://cloud.google.com/cdn/docs/using-cdn) (and the [load balancing](https://cloud.google.com/load-balancing/docs/https/) pre-requisite) on Google Cloud
 - Finalise [HSTS preload](https://hstspreload.org/)
 - Send OWASP ZAP output through [a parser](https://yq.readthedocs.io/en/latest/) and make it more succinct
+- Optimise the GitHub fork image with one of the following methods:
+  - [Convert the image file itself](https://developers.google.com/speed/docs/insights/OptimizeImages)
+  - [Use these nice third-party SVGs](https://github.com/tholman/github-corners)
