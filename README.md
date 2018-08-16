@@ -71,6 +71,7 @@ I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their 
   - [Performance & Font Awesome](https://fontawesome.com/how-to-use/on-the-web/other-topics/performance)
 - Set up a [CI/CD pipeline with Cloud Build](https://cloud.google.com/community/tutorials/automated-publishing-cloud-build)
   - Roll some [automated testing](https://cloud.google.com/cloud-build/docs/configuring-builds/build-test-deploy-artifacts) into said pipeline
+  - Run `gcloud app deploy` with `--no-promote --no-stop-previous-version --version=VERSION` flags first, then test the new version, and **_then_** promote that **_if_** it passes tests
 - Configure [a CDN](https://cloud.google.com/cdn/docs/using-cdn) (and the [load balancing](https://cloud.google.com/load-balancing/docs/https/) pre-requisite) on Google Cloud
 - Finalise [HSTS preload](https://hstspreload.org/)
 - Send OWASP ZAP output through [a parser](https://yq.readthedocs.io/en/latest/) and make it more succinct
