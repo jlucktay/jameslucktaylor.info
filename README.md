@@ -65,8 +65,10 @@ I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their 
 ## TODO
 
 - [Terraform](https://terraform.io) the Google Cloud infrastructure behind the site
+  - Create a bucket in my project to store state
 - Add the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header
 - Configure [warmup requests](https://cloud.google.com/appengine/docs/standard/go/warmup-requests/configuring) to improve performance
+- Get everything to run and work properly without any JavaScript
 - Slim down Font Awesome to just a few characters, rather than the whole library
   - [Performance & Font Awesome](https://fontawesome.com/how-to-use/on-the-web/other-topics/performance)
 - Set up a [CI/CD pipeline with Cloud Build](https://cloud.google.com/community/tutorials/automated-publishing-cloud-build)
