@@ -36,8 +36,9 @@ The page itself doesn't have very much functionality at all, just some links to 
 
 #### Performance
 
-- [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
+- Google Developers
+  - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+  - [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
 
 #### Responsiveness
 
