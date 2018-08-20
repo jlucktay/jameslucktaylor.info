@@ -43,6 +43,9 @@ deploy:
 test:
 	hey -z 3s http://jameslucktaylor.info
 
+test-load:
+	go-wrk -i -c=200 -t=8 -n=10000 https://jameslucktaylor.info
+
 prune-old-versions:
 	gcloud app versions delete $(shell gcloud app versions list --format="json" | jq -r '[ .[] | select(.traffic_split == 0) | .id ] | join(" ")') --quiet
 
@@ -53,7 +56,7 @@ full: deploy validate-web validate-lighthouse test clean
 
 validate: validate-web validate-lighthouse test clean
 
-kitchen-sink: deploy validate-web validate-lighthouse test zap clean
+kitchen-sink: deploy validate-web validate-lighthouse test test-load zap clean
 
 dev:
 	dev_appserver.py app.yaml --support_datastore_emulator=true
