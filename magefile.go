@@ -79,10 +79,18 @@ func PruneOldVersions() {
 		mg.Fatal(unmarshalAppVersionsExit, unmarshalErr)
 	}
 
+	versionsToDelete := []string{"app", "versions", "delete"}
+
 	for _, av := range appVersions {
 		if av.Traffic_split == 0 {
-			sh.Run("gcloud", "app", "versions", "delete", av.Id, "--quiet")
+			versionsToDelete = append(versionsToDelete, av.Id)
 		}
+	}
+
+	versionsToDelete = append(versionsToDelete, "--quiet")
+
+	if len(versionsToDelete) > 4 {
+		sh.Run("gcloud", versionsToDelete...)
 	}
 }
 
