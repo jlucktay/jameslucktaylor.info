@@ -3,29 +3,53 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
+	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
 
-var Default = Deploy
+var Default = DefaultTarget
 
 const (
 	site = "https://jameslucktaylor.info"
 )
 
-// This is a demo.
-func Demo() {
-	fmt.Println("Hello world!")
+// Deploys and tests the web app.
+func DefaultTarget() {
+	mg.SerialDeps(Deploy, TestSite)
 }
 
-// Deploy the web app to Google Cloud using the SDK.
+// Deploys the web app to Google Cloud using the SDK.
 // Assumes that credentials etc are already set up.
 func Deploy() {
 	sh.Run("gcloud", "app", "deploy", "--quiet")
 }
 
-// Run a quick responsiveness test against the site.
+// Runs a quick responsiveness test against the site.
 func TestSite() {
 	sh.RunV("hey", "-z", "3s", site)
+}
+
+// Finds old versions of the web app which no longer have any traffic
+// allocation, and prunes them.
+func PruneOldVersions() {
+	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
+	if appVersionsErr != nil {
+		mg.Fatal(1, appVersionsErr)
+	}
+
+	var appVersions []appVersion
+	unmarshalErr := json.Unmarshal([]byte(appVersionsOut), &appVersions)
+	if unmarshalErr != nil {
+		mg.Fatal(2, unmarshalErr)
+	}
+
+	fmt.Printf("appVersions: '%+v'\n", appVersions)
+}
+
+type appVersion struct {
+	Id            string
+	Traffic_split float32
 }
