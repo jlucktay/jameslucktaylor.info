@@ -12,11 +12,15 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
+var Default = DefaultTarget
+
 const (
-	site = "https://jameslucktaylor.info"
+	domain = "jameslucktaylor.info"
 )
 
-var Default = DefaultTarget
+var (
+	site = fmt.Sprintf("https://%s", domain)
+)
 
 const (
 	listAppVersionsExit = iota
@@ -101,5 +105,41 @@ func DeleteLighthouseReports() {
 			fmt.Println(file.Name())
 			sh.Rm(file.Name())
 		}
+	}
+}
+
+// Deploys, validates, tests, cleans up.
+func Full() {
+	mg.Deps(Deploy)
+	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite)
+	mg.Deps(Clean)
+}
+
+// Installs Lighthouse globally, via NPM.
+func LighthouseInstall() {
+	sh.RunV("npm", "install", "-g", "lighthouse")
+	sh.RunV("npm", "update", "-g", "lighthouse")
+}
+
+// Runs Lighthouse against the deployed web app.
+func ValidateLighthouse() {
+	mg.Deps(LighthouseInstall)
+	sh.Run("lighthouse", site, "--view")
+}
+
+// Runs various validators from across the web on the deployed web app.
+func ValidateWeb() {
+	validators := []string{
+		"https://validator.w3.org/unicorn/check?ucn_uri=",
+		"https://ssllabs.com/ssltest/analyze.html?clearCache=on&d=",
+		"https://developers.google.com/speed/pagespeed/insights/?url=",
+		"https://search.google.com/test/mobile-friendly?url=",
+		"https://developers.facebook.com/tools/debug/og/object/?q=",
+		"https://developers.facebook.com/tools/debug/sharing/?q=",
+		"https://realfavicongenerator.net/favicon_checker?protocol=https&site=",
+	}
+
+	for _, v := range validators {
+		sh.Run("open", fmt.Sprintf("%s%s", v, domain))
 	}
 }
