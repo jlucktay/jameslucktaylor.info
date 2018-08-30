@@ -4,7 +4,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
@@ -40,16 +39,20 @@ func PruneOldVersions() {
 		mg.Fatal(1, appVersionsErr)
 	}
 
+	type appVersion struct {
+		Id            string
+		Traffic_split float32
+	}
+
 	var appVersions []appVersion
 	unmarshalErr := json.Unmarshal([]byte(appVersionsOut), &appVersions)
 	if unmarshalErr != nil {
 		mg.Fatal(2, unmarshalErr)
 	}
 
-	fmt.Printf("appVersions: '%+v'\n", appVersions)
-}
-
-type appVersion struct {
-	Id            string
-	Traffic_split float32
+	for _, av := range appVersions {
+		if av.Traffic_split == 0 {
+			sh.Run("gcloud", "app", "versions", "delete", av.Id, "--quiet")
+		}
+	}
 }
