@@ -6,13 +6,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"regexp"
 
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
 
-var Default = DefaultTarget
+var Default = Def
 
 const (
 	domain = "jameslucktaylor.info"
@@ -28,10 +29,13 @@ const (
 	deployExit
 	readDirExit
 	regexCompileExit
+	zapExit
+	curlExit
+	unmarshalCurlExit
 )
 
 // Deploys and tests the web app.
-func DefaultTarget() {
+func Def() {
 	mg.Deps(Deploy)
 	mg.Deps(TestSite, PruneOldVersions)
 }
@@ -59,8 +63,7 @@ func TestLoad() {
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
 func PruneOldVersions() {
-	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions",
-		"list", "--format=json")
+	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
 	if appVersionsErr != nil {
 		mg.Fatal(listAppVersionsExit, appVersionsErr)
 	}
@@ -142,4 +145,60 @@ func ValidateWeb() {
 	for _, v := range validators {
 		sh.Run("open", fmt.Sprintf("%s%s", v, domain))
 	}
+}
+
+// Runs validations only.
+func Validate() {
+	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite)
+	mg.Deps(Clean)
+}
+
+// Runs up the web app locally.
+func Dev() {
+	sh.Run("dev_appserver.py", "app.yaml", "--support_datastore_emulator=true")
+}
+
+// Runs OWASP ZAP against the deployed web app.
+func Zap() {
+	zapScript := `/Applications/OWASP ZAP.app/Contents/Java/zap.sh`
+
+	_, zapErr := os.Stat(zapScript)
+	if zapErr != nil {
+		mg.Fatal(zapExit, zapErr)
+	}
+
+	sh.RunV(zapScript, "-cmd", "-quickurl", site)
+}
+
+// Validates the structured data that the web app exposes.
+func ValidateData() {
+	curlOut, curlErr := sh.Output("curl", "--silent", "--header", "Accept: application/json", fmt.Sprintf("http://linter.structured-data.org/?url=%s", site))
+	if curlErr != nil {
+		mg.Fatal(curlExit, curlErr)
+	}
+
+	type curlOutput struct {
+		Messages []string
+	}
+
+	var curl curlOutput
+	unmarshalErr := json.Unmarshal([]byte(curlOut), &curl)
+	if unmarshalErr != nil {
+		mg.Fatal(unmarshalCurlExit, unmarshalErr)
+	}
+
+	if len(curl.Messages) > 0 {
+		fmt.Println("Messages from structured data linter:")
+
+		for n, m := range curl.Messages {
+			fmt.Printf("[%v] %v\n", n, m)
+		}
+	}
+}
+
+// Does everything.
+func KitchenSink() {
+	mg.Deps(Deploy)
+	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite, TestLoad, Zap)
+	mg.Deps(Clean)
 }
