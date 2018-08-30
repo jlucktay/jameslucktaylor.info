@@ -9,24 +9,35 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
-var Default = DefaultTarget
-
 const (
 	site = "https://jameslucktaylor.info"
 )
 
+var Default = DefaultTarget
+
+const (
+	listAppVersionsExit = iota
+	unmarshalAppVersionsExit
+	deployExit
+)
+
 // Deploys and tests the web app.
 func DefaultTarget() {
-	mg.SerialDeps(Deploy, TestSite)
+	mg.Deps(Deploy)
+	mg.Deps(TestSite, PruneOldVersions)
 }
 
 // Deploys the web app to Google Cloud using the SDK.
 // Assumes that credentials etc are already set up.
 func Deploy() {
-	sh.Run("gcloud", "app", "deploy", "--quiet")
+	deployErr := sh.Run("gcloud", "app", "deploy", "--quiet")
+	if deployErr != nil {
+		mg.Fatal(deployExit, deployErr)
+	}
 }
 
-// Runs a quick responsiveness test against the site.
+// Runs a quick responsiveness test against the site. Sends the output from
+// 'hey' to stdout.
 func TestSite() {
 	sh.RunV("hey", "-z", "3s", site)
 }
@@ -34,9 +45,10 @@ func TestSite() {
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
 func PruneOldVersions() {
-	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
+	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions",
+		"list", "--format=json")
 	if appVersionsErr != nil {
-		mg.Fatal(1, appVersionsErr)
+		mg.Fatal(listAppVersionsExit, appVersionsErr)
 	}
 
 	type appVersion struct {
@@ -47,7 +59,7 @@ func PruneOldVersions() {
 	var appVersions []appVersion
 	unmarshalErr := json.Unmarshal([]byte(appVersionsOut), &appVersions)
 	if unmarshalErr != nil {
-		mg.Fatal(2, unmarshalErr)
+		mg.Fatal(unmarshalAppVersionsExit, unmarshalErr)
 	}
 
 	for _, av := range appVersions {
