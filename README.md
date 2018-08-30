@@ -56,7 +56,7 @@ The page itself doesn't have very much functionality at all, just some links to 
 
 ### Miscellaneous (blogs, articles, references)
 
-I've proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their burroughs and [shaved quite a few yaks](https://www.youtube.com/watch?v=AbSehcT19u0) while working on this project. 😅
+I'm proud/ashamed to admit that I have chased a lot of rabbits 🐇 down their burroughs and [shaved quite a few yaks](https://www.youtube.com/watch?v=AbSehcT19u0) while working on this project. 😅
 
 - [Lighthouse: how to reduce render-blocking scripts](https://fly.io/articles/lighthouse-how-to-reduce-render-blocking-scripts/)
 - Font-display rabbit hole (thanks to Lighthouse for highlighting this)
