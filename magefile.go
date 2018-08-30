@@ -4,6 +4,9 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"regexp"
 
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
@@ -19,6 +22,8 @@ const (
 	listAppVersionsExit = iota
 	unmarshalAppVersionsExit
 	deployExit
+	readDirExit
+	regexCompileExit
 )
 
 // Deploys and tests the web app.
@@ -40,6 +45,11 @@ func Deploy() {
 // 'hey' to stdout.
 func TestSite() {
 	sh.RunV("hey", "-z", "3s", site)
+}
+
+// Runs a load test against the site. Sends the output from 'go-wrk' to stdout.
+func TestLoad() {
+	sh.RunV("go-wrk", "-i", "-c=200", "-t=8", "-n=10000", site)
 }
 
 // Finds old versions of the web app which no longer have any traffic
@@ -65,6 +75,31 @@ func PruneOldVersions() {
 	for _, av := range appVersions {
 		if av.Traffic_split == 0 {
 			sh.Run("gcloud", "app", "versions", "delete", av.Id, "--quiet")
+		}
+	}
+}
+
+// Cleans up various bits of cruft.
+func Clean() {
+	mg.Deps(DeleteLighthouseReports, PruneOldVersions)
+}
+
+// Deletes the HTML reports generated when Lighthouse runs.
+func DeleteLighthouseReports() {
+	files, readDirErr := ioutil.ReadDir(".")
+	if readDirErr != nil {
+		mg.Fatal(readDirExit, readDirErr)
+	}
+
+	r, regexErr := regexp.Compile(`^jameslucktaylor\.info_.*\.report\.html$`)
+	if regexErr != nil {
+		mg.Fatal(regexCompileExit, regexErr)
+	}
+
+	for _, file := range files {
+		if r.MatchString(file.Name()) {
+			fmt.Println(file.Name())
+			sh.Rm(file.Name())
 		}
 	}
 }
