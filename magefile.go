@@ -52,7 +52,7 @@ func TestSite() error {
 
 // Runs a load test against the site. Sends the output from 'go-wrk' to stdout.
 func TestLoad() error {
-	return sh.RunV("go-wrk", "-i", "-c=200", "-t=8", "-n=10000", site)
+	return sh.RunV("go-wrk", "-i", "-t=8", "-n=10000", site)
 }
 
 // Finds old versions of the web app which no longer have any traffic
@@ -132,7 +132,7 @@ func LighthouseInstall() {
 // Runs Lighthouse against the deployed web app.
 func ValidateLighthouse() error {
 	mg.Deps(LighthouseInstall)
-	return sh.Run("lighthouse", site, "--view")
+	return sh.Run("lighthouse", site, "--quiet", "--view")
 }
 
 // Runs various validators from across the web on the deployed web app.
@@ -165,7 +165,7 @@ func Dev() error {
 
 // Runs OWASP ZAP against the deployed web app.
 func Zap() error {
-	zapScript := `/Applications/OWASP ZAP.app/Contents/Java/zap.sh`
+	zapScript := "/Applications/OWASP ZAP.app/Contents/Java/zap.sh"
 
 	_, zapErr := os.Stat(zapScript)
 	if zapErr != nil {
