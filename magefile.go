@@ -13,23 +13,22 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
-var Default = Def
-
 const (
-	domain = "jameslucktaylor.info"
+	domain     = "jameslucktaylor.info"
+	gcpProject = "jameslucktaylor-info"
 )
 
 var (
-	site = fmt.Sprintf("https://%s", domain)
+	Default = Def
+	site    = fmt.Sprintf("https://%s", domain)
 )
 
+// Exit codes
 const (
 	listAppVersionsExit = iota
 	unmarshalAppVersionsExit
-	deployExit
 	readDirExit
 	regexCompileExit
-	zapExit
 	curlExit
 	unmarshalCurlExit
 )
@@ -42,27 +41,23 @@ func Def() {
 
 // Deploys the web app to Google Cloud using the SDK.
 // Assumes that credentials etc are already set up.
-func Deploy() {
-	deployErr := sh.Run("gcloud", "app", "deploy", "--quiet")
-	if deployErr != nil {
-		mg.Fatal(deployExit, deployErr)
-	}
+func Deploy() error {
+	return sh.Run("gcloud", "app", "deploy", fmt.Sprintf("--project=%s", gcpProject), "--quiet", "--verbosity=critical", "--promote")
 }
 
-// Runs a quick responsiveness test against the site. Sends the output from
-// 'hey' to stdout.
-func TestSite() {
-	sh.RunV("hey", "-z", "3s", site)
+// Runs a quick responsiveness test against the site. Sends the output from 'hey' to stdout.
+func TestSite() error {
+	return sh.RunV("hey", "-z", "3s", site)
 }
 
 // Runs a load test against the site. Sends the output from 'go-wrk' to stdout.
-func TestLoad() {
-	sh.RunV("go-wrk", "-i", "-c=200", "-t=8", "-n=10000", site)
+func TestLoad() error {
+	return sh.RunV("go-wrk", "-i", "-c=200", "-t=8", "-n=10000", site)
 }
 
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
-func PruneOldVersions() {
+func PruneOldVersions() error {
 	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
 	if appVersionsErr != nil {
 		mg.Fatal(listAppVersionsExit, appVersionsErr)
@@ -79,19 +74,21 @@ func PruneOldVersions() {
 		mg.Fatal(unmarshalAppVersionsExit, unmarshalErr)
 	}
 
-	versionsToDelete := []string{"app", "versions", "delete"}
+	versionsDeleteArgs := []string{"app", "versions", "delete"}
 
 	for _, av := range appVersions {
 		if av.Traffic_split == 0 {
-			versionsToDelete = append(versionsToDelete, av.Id)
+			versionsDeleteArgs = append(versionsDeleteArgs, av.Id)
 		}
 	}
 
-	versionsToDelete = append(versionsToDelete, "--quiet")
+	versionsDeleteArgs = append(versionsDeleteArgs, "--quiet")
 
-	if len(versionsToDelete) > 4 {
-		sh.Run("gcloud", versionsToDelete...)
+	if len(versionsDeleteArgs) > 4 {
+		return sh.Run("gcloud", versionsDeleteArgs...)
 	}
+
+	return nil
 }
 
 // Cleans up various bits of cruft.
@@ -133,9 +130,9 @@ func LighthouseInstall() {
 }
 
 // Runs Lighthouse against the deployed web app.
-func ValidateLighthouse() {
+func ValidateLighthouse() error {
 	mg.Deps(LighthouseInstall)
-	sh.Run("lighthouse", site, "--view")
+	return sh.Run("lighthouse", site, "--view")
 }
 
 // Runs various validators from across the web on the deployed web app.
@@ -162,20 +159,20 @@ func Validate() {
 }
 
 // Runs up the web app locally.
-func Dev() {
-	sh.Run("dev_appserver.py", "app.yaml", "--support_datastore_emulator=true")
+func Dev() error {
+	return sh.Run("dev_appserver.py", "app.yaml", "--support_datastore_emulator=true")
 }
 
 // Runs OWASP ZAP against the deployed web app.
-func Zap() {
+func Zap() error {
 	zapScript := `/Applications/OWASP ZAP.app/Contents/Java/zap.sh`
 
 	_, zapErr := os.Stat(zapScript)
 	if zapErr != nil {
-		mg.Fatal(zapExit, zapErr)
+		return zapErr
 	}
 
-	sh.RunV(zapScript, "-cmd", "-quickurl", site)
+	return sh.RunV(zapScript, "-cmd", "-quickurl", site)
 }
 
 // Validates the structured data that the web app exposes.
@@ -207,6 +204,6 @@ func ValidateData() {
 // Does everything.
 func KitchenSink() {
 	mg.Deps(Deploy)
-	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite, TestLoad, Zap)
+	mg.Deps(ValidateWeb, ValidateLighthouse, ValidateData, TestSite, TestLoad, Zap)
 	mg.Deps(Clean)
 }
