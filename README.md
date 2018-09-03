@@ -11,7 +11,7 @@ The page itself doesn't have very much functionality at all, just some links to 
 ## Checks
 
 [![SSL Rating](https://sslbadge.org/?domain=jameslucktaylor.info)](https://ssllabs.com/ssltest/analyze.html?d=jameslucktaylor.info)
-[![Why No Padlock?](https://img.shields.io/badge/Why%20No%20Padlock%3F-Pass-brightgreen.svg?style=plastic)](https://whynopadlock.com/results/c80ada01-1136-4321-9819-efab5b6c3205)
+[![Why No Padlock?](https://img.shields.io/badge/Why%20No%20Padlock%3F-Pass-brightgreen.svg?style=plastic)](https://whynopadlock.com/results/f3ac678b-90a6-4bce-8f89-0504d84a08d5)
 
 ## Tools used
 
