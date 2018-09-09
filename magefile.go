@@ -20,7 +20,14 @@ const (
 
 var (
 	Default = Def
-	site    = fmt.Sprintf("https://%s", domain)
+	Aliases = map[string]interface{}{
+		"c": Clean,
+		// 	"i":     Install,
+		// 	"build": Install,
+		// 	"ls":    List,
+	}
+
+	site = fmt.Sprintf("https://%s", domain)
 )
 
 // Exit codes
