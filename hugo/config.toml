@@ -1,3 +1,138 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+### Current
+# https://themes.gohugo.io/hugo-coder/
+
+### Potential alternatives
+# https://themes.gohugo.io/hugo-theme-vec/
+# https://themes.gohugo.io/minimo/
+
+### Tried and disliked
+# https://themes.gohugo.io/hugo-theme-nix/
+
+BaseURL = "http://jameslucktaylor.info"
+Theme = "coder"
+
+LanguageCode = "en-au"
+DefaultContentLanguage = "en"
+DefaultContentLanguageInSubdir = false
+
+Paginate = 20 # Default number of pages per page in pagination.
+CanonifyURLs = true # Enable to turn relative URLs into absolute.
+
+PygmentsStyle = "b2" # Color-theme or style for syntax highlighting.
+PygmentsCodeFences = true # Enable code fence background highlighting.
+PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences without specified language.
+
+# disqusShortname = "yourdiscussshortname" # Enable or disable Disqus.
+
+[params] # theme parameters
+    AvatarURL = "https://jameslucktaylor.info/static/og-image.png" # Contain the path of the optional avatar in the static folder.
+
+    # Whether you want to hide copyright and credits in the footer.
+    HideCopyright = false
+    HideCredits = false
+
+    # To switch bewteen LTR and RTL layout
+    RTL = false
+
+    # Custom CSS
+    Custom_CSS = []
+
+# Social links
+[[params.social]]
+    icon = "fab fa-github fa-2x"
+    name = "GitHub"
+    url = "https://github.com/jlucktay"
+    weight = 1
+
+[[params.social]]
+    icon = "fab fa-gitlab fa-2x"
+    name = "GitLab"
+    url = "https://gitlab.com/jlucktay"
+    weight = 2
+
+[[params.social]]
+    icon = "fab fa-twitter fa-2x"
+    name = "Twitter"
+    url = "https://twitter.com/jlucktay"
+    weight = 3
+
+[[params.social]]
+    icon = "fab fa-linkedin fa-2x"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/jlucktay"
+    weight = 4
+
+[[params.social]]
+    icon = "fab fa-medium fa-2x"
+    name = "Medium"
+    url = "https://medium.com/@jlucktay"
+    weight = 5
+
+[languages]
+
+    [languages.en]
+        languagename = "English" # The language name to be displayed in the selector.
+        title = "Info"
+
+        # You can configure the theme parameters for each language.
+        [languages.en.params]
+            author = "James Lucktaylor" # Author's name.
+            description = "James Lucktaylors's portfolio" # Site description.
+            footercontent = "Enter a text here." # Add footer content
+            info = "Full Stack DevOps and Magician" # Author's job title or info.
+            keywords = "developer,personal,portfolio" # Site keywords.
+
+        [languages.en.menu] # It is possible to change the menu too.
+
+            [[languages.en.menu.main]]
+                name = "About"
+                URL = "/about/"
+                weight = 1
+
+            [[languages.en.menu.main]]
+                name = "Blog"
+                URL = "/blog/"
+                weight = 2
+
+            [[languages.en.menu.main]]
+                name = "Projects"
+                URL = "/projects/"
+                weight = 3
+
+            [[languages.en.menu.main]]
+                name = "Contact me"
+                URL = "/contact/"
+                weight = 5
+
+    [languages.pl]
+        languagename = "Polski"
+        title = "Info po polsku"
+
+        [languages.pl.params]
+            author = "John Doe"
+            description = "Strona domowa John'a Doe"
+            footercontent = "Enter a text here." # Add footer content
+            info = "Full Stack DevOps i Magik"
+            keywords = "blog,developer,strona domowa"
+
+        [languages.pl.menu]
+
+            [[languages.pl.menu.main]]
+                name = "O mnie"
+                URL = "/pl/about/"
+                weight = 1
+
+            [[languages.pl.menu.main]]
+                name = "Blog"
+                URL = "/pl/blog/"
+                weight = 2
+
+            [[languages.pl.menu.main]]
+                name = "projektowanie"
+                URL = "/projektowanie/"
+                weight = 3
+
+            [[languages.pl.menu.main]]
+                name = "kontakt"
+                URL = "/kontakt/"
+                weight = 5
