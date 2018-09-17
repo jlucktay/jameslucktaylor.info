@@ -29,6 +29,8 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
     # Custom CSS
     Custom_CSS = []
 
+    Author = "James Lucktaylor" # Author's name.
+
 # Social links
 [[params.social]]
     icon = "fab fa-github fa-2x"
@@ -74,11 +76,10 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
 
         # You can configure the theme parameters for each language.
         [languages.en.params]
-            author = "James Lucktaylor" # Author's name.
-            description = "James Lucktaylors's portfolio" # Site description.
-            footercontent = "Enter a text here." # Add footer content
-            info = "Full Stack DevOps and Magician" # Author's job title or info.
-            keywords = "developer,personal,portfolio" # Site keywords.
+            description = "James Lucktaylor's info" # Site description.
+            footercontent = "Enter text here." # Add footer content
+            info = "DevOps and Platform Engineer" # Author's job title or info.
+            keywords = "developer,engineer,info,personal" # Site keywords.
 
         [languages.en.menu] # It is possible to change the menu too.
 
@@ -102,16 +103,15 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
                 URL = "/contact/"
                 weight = 5
 
-    [languages.pl]
-        languagename = "Polski"
-        title = "Info po polsku"
+    [languages.cz]
+        languagename = "Čeština"
+        title = "Info v češtině"
 
-        [languages.pl.params]
-            author = "John Doe"
-            description = "Strona domowa John'a Doe"
-            footercontent = "Enter a text here." # Add footer content
-            info = "Full Stack DevOps i Magik"
-            keywords = "blog,developer,strona domowa"
+        [languages.cz.params]
+            description = "Informace o James Lucktaylor"
+            footercontent = "Zadejte zde text."
+            info = "Vývojové operace a inženýr platformy"
+            keywords = "vývojář,inženýr,informace,osobní"
 
         [languages.pl.menu]
 
