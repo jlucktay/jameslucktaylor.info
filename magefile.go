@@ -40,31 +40,35 @@ const (
 	unmarshalCurlExit
 )
 
+type (
+	WebApp mg.Namespace
+)
+
 // Deploys and tests the web app.
 func Def() {
-	mg.Deps(Deploy)
-	mg.Deps(TestSite, PruneOldVersions)
+	mg.Deps(WebApp.Deploy)
+	mg.Deps(WebApp.Test, WebApp.Prune)
 }
 
 // Deploys the web app to Google Cloud using the SDK.
 // Assumes that credentials etc are already set up.
-func Deploy() error {
+func (WebApp) Deploy() error {
 	return sh.Run("gcloud", "app", "deploy", fmt.Sprintf("--project=%s", gcpProject), "--quiet", "--verbosity=critical", "--promote")
 }
 
-// Runs a quick responsiveness test against the site. Sends the output from 'hey' to stdout.
-func TestSite() error {
+// Runs a quick responsiveness test against the deployed web app. Sends the output from 'hey' to stdout.
+func (WebApp) Test() error {
 	return sh.RunV("hey", "-z", "3s", site)
 }
 
-// Runs a load test against the site. Sends the output from 'go-wrk' to stdout.
-func TestLoad() error {
+// Runs a load test against the deployed web app. Sends the output from 'go-wrk' to stdout.
+func (WebApp) TestLoad() error {
 	return sh.RunV("go-wrk", "-i", "-t=8", "-n=10000", site)
 }
 
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
-func PruneOldVersions() error {
+func (WebApp) Prune() error {
 	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
 	if appVersionsErr != nil {
 		mg.Fatal(listAppVersionsExit, appVersionsErr)
@@ -100,7 +104,7 @@ func PruneOldVersions() error {
 
 // Cleans up various bits of cruft.
 func Clean() {
-	mg.Deps(DeleteLighthouseReports, PruneOldVersions)
+	mg.Deps(DeleteLighthouseReports, WebApp.Prune)
 }
 
 // Deletes the HTML reports generated when Lighthouse runs.
@@ -125,8 +129,8 @@ func DeleteLighthouseReports() {
 
 // Deploys, validates, tests, cleans up.
 func Full() {
-	mg.Deps(Deploy)
-	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite)
+	mg.Deps(WebApp.Deploy)
+	mg.Deps(ValidateWeb, ValidateLighthouse, WebApp.Test)
 	mg.Deps(Clean)
 }
 
@@ -161,7 +165,7 @@ func ValidateWeb() {
 
 // Runs validations only.
 func Validate() {
-	mg.Deps(ValidateWeb, ValidateLighthouse, TestSite)
+	mg.Deps(ValidateWeb, ValidateLighthouse, WebApp.Test)
 	mg.Deps(Clean)
 }
 
@@ -210,7 +214,7 @@ func ValidateData() {
 
 // Does everything.
 func KitchenSink() {
-	mg.Deps(Deploy)
-	mg.Deps(ValidateWeb, ValidateLighthouse, ValidateData, TestSite, TestLoad, Zap)
+	mg.Deps(WebApp.Deploy)
+	mg.Deps(ValidateWeb, ValidateLighthouse, ValidateData, WebApp.Test, WebApp.TestLoad, Zap)
 	mg.Deps(Clean)
 }
