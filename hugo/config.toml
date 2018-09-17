@@ -33,31 +33,37 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
 [[params.social]]
     icon = "fab fa-github fa-2x"
     name = "GitHub"
-    url = "https://github.com/jlucktay"
-    weight = 1
+    url = "//github.com/jlucktay"
+    weight = 0
 
 [[params.social]]
-    icon = "fab fa-gitlab fa-2x"
-    name = "GitLab"
-    url = "https://gitlab.com/jlucktay"
-    weight = 2
+    icon = "fab fa-stack-overflow fa-2x"
+    name = "Stack Overflow"
+    url = "//stackoverflow.com/users/380599/jlucktay"
+    weight = 1
 
 [[params.social]]
     icon = "fab fa-twitter fa-2x"
     name = "Twitter"
-    url = "https://twitter.com/jlucktay"
-    weight = 3
+    url = "//twitter.com/jlucktay"
+    weight = 2
 
 [[params.social]]
     icon = "fab fa-linkedin fa-2x"
     name = "LinkedIn"
-    url = "https://www.linkedin.com/in/jlucktay"
+    url = "//www.linkedin.com/in/jlucktay"
+    weight = 3
+
+[[params.social]]
+    icon = "fab fa-gitlab fa-2x"
+    name = "GitLab"
+    url = "//gitlab.com/jlucktay"
     weight = 4
 
 [[params.social]]
     icon = "fab fa-medium fa-2x"
     name = "Medium"
-    url = "https://medium.com/@jlucktay"
+    url = "//medium.com/@jlucktay"
     weight = 5
 
 [languages]
