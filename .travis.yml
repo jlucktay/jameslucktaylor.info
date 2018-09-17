@@ -6,14 +6,15 @@ branches:
   only:
     - feature/travis
 
-# before_install:
-# - go get github.com/kardianos/govendor
-# - govendor get github.com/gohugoio/hugo
-# - go install github.com/gohugoio/hugo
-
 before_install:
 - go get -u -d github.com/magefile/mage
 - cd $GOPATH/src/github.com/magefile/mage
 - go run bootstrap.go
 
-script: mage --version
+install:
+- go get github.com/kardianos/govendor
+- govendor get github.com/gohugoio/hugo
+- go install github.com/gohugoio/hugo
+
+script:
+- mage
