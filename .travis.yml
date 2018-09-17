@@ -12,9 +12,9 @@ before_install:
 - go run bootstrap.go
 
 install:
-- go get -d github.com/gohugoio/hugo
+- go get -d -u -v github.com/gohugoio/hugo
 - cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
-- HUGO_BUILD_TAGS=extended mage hugo
+- HUGO_BUILD_TAGS=extended mage -v hugo
 
 script:
 - mage
