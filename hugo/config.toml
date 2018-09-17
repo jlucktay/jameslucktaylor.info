@@ -1,4 +1,4 @@
-BaseURL = "https://jameslucktaylor.info"
+BaseURL = "//hugo.jameslucktaylor.info"
 
 # https://themes.gohugo.io/hugo-coder/
 Theme = "coder"
