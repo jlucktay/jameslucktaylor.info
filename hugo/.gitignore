@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/hugo,visualstudiocode
+# Created by https://www.gitignore.io/api/hugo
 
 ### Hugo ###
 # Hugo binary
@@ -8,11 +8,4 @@ hugo*
 /public/
 /resources/_gen
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# End of https://www.gitignore.io/api/hugo,visualstudiocode
+# End of https://www.gitignore.io/api/hugo
