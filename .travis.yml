@@ -14,8 +14,7 @@ before_install:
 install:
 - go get -d github.com/gohugoio/hugo
 - cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
-- mage vendor
-- HUGO_BUILD_TAGS=extended mage install
+- HUGO_BUILD_TAGS=extended mage hugo
 
 script:
 - mage
