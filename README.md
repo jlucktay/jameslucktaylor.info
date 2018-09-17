@@ -19,7 +19,9 @@ The page itself doesn't have very much functionality at all, just some links to 
 
 - [Go](https://golang.org)
 - [Google Cloud SDK](https://cloud.google.com/sdk/)
+- Hugo
 - [Mage](https://github.com/magefile/mage)
+- Travis
 
 ### Design
 
