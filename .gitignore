@@ -1,4 +1,4 @@
-# Created by https://gitignore.io/api/go,visualstudiocode
+# Created by https://www.gitignore.io/api/go,hugo,visualstudiocode
 
 ### Go ###
 # Binaries for programs and plugins
@@ -18,6 +18,14 @@
 /vendor/
 /Godeps/
 
+### Hugo ###
+# Hugo binary
+hugo*
+
+# Generated files at default location
+/public/
+/resources/_gen
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -25,7 +33,7 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# End of https://gitignore.io/api/go,visualstudiocode
+# End of https://www.gitignore.io/api/go,hugo,visualstudiocode
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
