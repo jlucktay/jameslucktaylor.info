@@ -1,86 +1,14 @@
-# app.yaml docs are here:
-# https://cloud.google.com/appengine/docs/standard/go/config/appref
+service: hugo
 
-service: default
-runtime: go
-api_version: go1
-env: standard
-
-instance_class: F1
-
-default_expiration: "10m"
+runtime: python27
+api_version: 1
+threadsafe: true
 
 handlers:
+- url: /
+  static_files: hugo/public/index.html
+  upload: hugo/public/index.html
 
-# Find the static files in the 'static' directory
-- url: /static
-  http_headers:
-    Cache-Control: no-cache, no-store, must-revalidate
-    Pragma: no-cache
-    X-Content-Type-Options: nosniff
-  redirect_http_response_code: 301
-  secure: always
-  static_dir: static
-
-# Static favicon asset files
-- url: /(browserconfig\.xml|favicon\.ico)$
-  http_headers:
-    Cache-Control: no-cache, no-store, must-revalidate
-    Pragma: no-cache
-    X-Content-Type-Options: nosniff
-  redirect_http_response_code: 301
-  secure: always
-  static_files: static/favicon/\1
-  upload: static/favicon/(browserconfig\.xml|favicon\.ico)$
-
-# The 2x Apple icon files are also static (and identical)
-- url: /apple-touch-icon(-precomposed)?\.png$
-  http_headers:
-    Cache-Control: no-cache, no-store, must-revalidate
-    Pragma: no-cache
-    X-Content-Type-Options: nosniff
-  redirect_http_response_code: 301
-  secure: always
-  static_files: static/favicon/apple-touch-icon.png
-  upload: static/favicon/apple-touch-icon.png
-
-# The 'robots.txt' file is also static
-- url: /robots\.txt$
-  http_headers:
-    Cache-Control: no-cache, no-store, must-revalidate
-    Pragma: no-cache
-    X-Content-Type-Options: nosniff
-  redirect_http_response_code: 301
-  secure: always
-  static_files: static/robots.txt
-  upload: static/robots.txt
-
-# All other URLs are handled by the Go application script
-- url: /.*
-  redirect_http_response_code: 301
-  secure: always
-  script: _go_app
-
-env_variables:
-  GREETING: 'Hello, world! o/'
-
-automatic_scaling:
-  # max_concurrent_requests:
-  # max_idle_instances: 0
-  # max_instances: 0 # Zero disables this setting
-  # max_pending_latency:
-  # min_idle_instances:
-  # min_instances: 0 # Note that you are charged for the number of instances specified whether they are receiving traffic or not
-  # min_pending_latency:
-  target_cpu_utilization: 0.95
-  target_throughput_utilization: 0.95
-
-skip_files:
-- ^(.*/)?#.*#$
-- ^(.*/)?.*~$
-- ^(.*/)?.*\.py[co]$
-- ^(.*/)?.*/RCS/.*$
-- ^(.*/)?\..*$
-- build/
-- ^magefile.go$
-- ^jameslucktaylor.info_.*\.report.html$
+- url: /(.*)
+  static_files: hugo/public/\1
+  upload: hugo/public/(.*)
