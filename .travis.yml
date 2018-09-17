@@ -7,14 +7,15 @@ branches:
     - feature/travis
 
 before_install:
-- go get -u -d github.com/magefile/mage
+- go get -d -u -v github.com/magefile/mage
 - cd $GOPATH/src/github.com/magefile/mage
 - go run bootstrap.go
 
 install:
-- go get github.com/kardianos/govendor
-- govendor get github.com/gohugoio/hugo
-- go install github.com/gohugoio/hugo
+- go get -d github.com/gohugoio/hugo
+- cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
+- mage vendor
+- HUGO_BUILD_TAGS=extended mage install
 
 script:
 - mage
