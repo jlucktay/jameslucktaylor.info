@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-AU">
+
+<head>
+
+{{comment "<!-- Metadata -->"}}
+<meta charset="utf-8" />
+<meta name="description" content="Single point of contact for my various profiles and endeavours">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{{comment "<!-- Core and Roboto font CSS -->"}}
+<style>
+{{template "roboto.css"}}
+{{template "index.css"}}
+</style>
+
+{{comment "<!-- This is favicon country -->"}}
+{{template "favicon.html"}}
+
+{{comment "<!-- Open Graph metadata -->"}}
+{{template "opengraph.html"}}
+
+{{comment "<!-- Font Awesome -->"}}
+<script defer src="//use.fontawesome.com/releases/v5.2.0/js/brands.js"
+    integrity="sha384-4BRtleJgTYsMKIVuV1Z7lNE29r4MxwKR7u88TWG2GaXsmSljIykt/YDbmKndKGID"
+    crossorigin="anonymous"></script>
+<script defer src="//use.fontawesome.com/releases/v5.2.0/js/fontawesome.js"
+    integrity="sha384-QcnrgQuRmocjIBY6ByWMmDvUg3HO4MSdVjY7ynJwZfvTDhVPPQOUI9TRzc6/7ZO1"
+    crossorigin="anonymous"></script>
+
+<title>
+    James Lucktaylor - Info
+</title>
+
+</head>
+
+<body>
+    <h1>jameslucktaylor.info</h1>
+
+{{comment "<!-- GitHub ribbon -->"}}
+{{template "github.html"}}
+
+    <img alt="GCP Gopher" id="logo" src="/static/gcp-gopher.svg"
+        title="This site runs on Google Cloud using Go in App Engine!"
+        width="100" />
+
+    <div id="greeting">{{.Greeting}}</div>
+
+    <div class="social">
+        <a href="//linkedin.com/in/jlucktay" title="LinkedIn">
+            <i class="fab fa-linkedin fa-3x"></i>
+        </a>
+        <a href="//github.com/jlucktay" title="GitHub">
+            <i class="fab fa-github fa-3x"></i>
+        </a>
+        <a href="//twitter.com/jlucktay" title="Twitter">
+            <i class="fab fa-twitter fa-3x"></i>
+        </a>
+        <a href="//profiles.google.com/jlucktay" title="Google+">
+            <i class="fab fa-google-plus fa-3x"></i>
+        </a>
+        <a href="//facebook.com/jlucktay" title="Facebook">
+            <i class="fab fa-facebook fa-3x"></i>
+        </a>
+    </div>
+</body>
+
+</html>

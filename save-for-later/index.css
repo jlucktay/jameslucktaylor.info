@@ -1,0 +1,43 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+a {
+    color: #fff;
+    text-decoration-line: none;
+}
+
+body {
+    background-color: #006400;
+    color: #fff;
+}
+
+div {
+    position: relative;
+    z-index: 2;
+}
+
+div#greeting {
+    padding: 20px;
+}
+
+div.social {
+    width: 100%;
+}
+
+.fab {
+    padding: 5px;
+}
+
+img#logo {
+    border-color: #fff;
+    border-style: dashed;
+    border-width: 1px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 20%;
+}
