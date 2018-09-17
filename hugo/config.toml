@@ -17,6 +17,8 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
 # disqusShortname = "yourdiscussshortname" # Enable or disable Disqus.
 
 [params] # theme parameters
+# TODO: make this URL work as relative, rather than absolute
+#     AvatarURL = "/static/og-image.png" # Contain the path of the optional avatar in the static folder.
     AvatarURL = "https://jameslucktaylor.info/static/og-image.png" # Contain the path of the optional avatar in the static folder.
 
     # Whether you want to hide copyright and credits in the footer.
@@ -81,27 +83,27 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
             info = "DevOps and Platform Engineer" # Author's job title or info.
             keywords = "developer,engineer,info,personal" # Site keywords.
 
-        [languages.en.menu] # It is possible to change the menu too.
+        # [languages.en.menu] # It is possible to change the menu too.
 
-            [[languages.en.menu.main]]
-                name = "About"
-                URL = "/about/"
-                weight = 1
+        #     [[languages.en.menu.main]]
+        #         name = "About"
+        #         URL = "/about/"
+        #         weight = 1
 
-            [[languages.en.menu.main]]
-                name = "Blog"
-                URL = "/blog/"
-                weight = 2
+        #     [[languages.en.menu.main]]
+        #         name = "Blog"
+        #         URL = "/blog/"
+        #         weight = 2
 
-            [[languages.en.menu.main]]
-                name = "Projects"
-                URL = "/projects/"
-                weight = 3
+        #     [[languages.en.menu.main]]
+        #         name = "Projects"
+        #         URL = "/projects/"
+        #         weight = 3
 
-            [[languages.en.menu.main]]
-                name = "Contact me"
-                URL = "/contact/"
-                weight = 5
+        #     [[languages.en.menu.main]]
+        #         name = "Contact me"
+        #         URL = "/contact/"
+        #         weight = 5
 
     [languages.cz]
         languagename = "Čeština"
@@ -113,24 +115,24 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
             info = "Vývojové operace a inženýr platformy"
             keywords = "vývojář,inženýr,informace,osobní"
 
-        [languages.pl.menu]
+        # [languages.cz.menu]
 
-            [[languages.pl.menu.main]]
-                name = "O mnie"
-                URL = "/pl/about/"
-                weight = 1
+        #     [[languages.cz.menu.main]]
+        #         name = "O mnie"
+        #         URL = "/cz/about/"
+        #         weight = 1
 
-            [[languages.pl.menu.main]]
-                name = "Blog"
-                URL = "/pl/blog/"
-                weight = 2
+        #     [[languages.cz.menu.main]]
+        #         name = "Blog"
+        #         URL = "/cz/blog/"
+        #         weight = 2
 
-            [[languages.pl.menu.main]]
-                name = "projektowanie"
-                URL = "/projektowanie/"
-                weight = 3
+        #     [[languages.cz.menu.main]]
+        #         name = "projektowanie"
+        #         URL = "/projektowanie/"
+        #         weight = 3
 
-            [[languages.pl.menu.main]]
-                name = "kontakt"
-                URL = "/kontakt/"
-                weight = 5
+        #     [[languages.cz.menu.main]]
+        #         name = "kontakt"
+        #         URL = "/kontakt/"
+        #         weight = 5
