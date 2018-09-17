@@ -1,14 +1,6 @@
-### Current
+BaseURL = "https://jameslucktaylor.info"
+
 # https://themes.gohugo.io/hugo-coder/
-
-### Potential alternatives
-# https://themes.gohugo.io/hugo-theme-vec/
-# https://themes.gohugo.io/minimo/
-
-### Tried and disliked
-# https://themes.gohugo.io/hugo-theme-nix/
-
-BaseURL = "http://jameslucktaylor.info"
 Theme = "coder"
 
 LanguageCode = "en-au"
