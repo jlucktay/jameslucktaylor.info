@@ -1,2 +1,6 @@
 language: go
 go: 1.9
+
+branches:
+  only:
+    - feature/travis
