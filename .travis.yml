@@ -8,7 +8,7 @@ branches:
 
 before_install:
 - go get -d -u -v github.com/magefile/mage
-- cd $GOPATH/src/github.com/magefile/mage
+- cd ${GOPATH:-$HOME/go}/src/github.com/magefile/mage
 - go run bootstrap.go
 
 install:
