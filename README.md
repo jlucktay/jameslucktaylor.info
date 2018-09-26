@@ -4,6 +4,8 @@ My Go-powered website!
 
 Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.google.com/appengine/) under the [Go Standard Environment](https://cloud.google.com/appengine/docs/standard/go/).
 
+[![Built with Mage](https://magefile.org/badge.svg)](https://magefile.org)
+
 I have been tinkering with this site as a vehicle to learn some more web dev things, and am trying to put best practices and good security and industry standards and the like into place as I go.
 
 The page itself doesn't have very much functionality at all, just some links to me elsewhere on the web, and the real value in this project for me is (over-)engineering everything behind and around it.
