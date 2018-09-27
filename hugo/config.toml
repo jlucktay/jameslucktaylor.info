@@ -32,6 +32,8 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
     Custom_CSS = []
 
     Author = "James Lucktaylor" # Author's name.
+    Info = "DevOps and Platform Engineer" # Author's job title or info.
+    # In Čeština, it's normal to use English terms for things like this
 
 # Social links
 [[params.social]]
@@ -80,7 +82,6 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
         [languages.en.params]
             description = "James Lucktaylor's info" # Site description.
             footercontent = "Enter text here." # Add footer content
-            info = "DevOps and Platform Engineer" # Author's job title or info.
             keywords = "developer,engineer,info,personal" # Site keywords.
 
         # [languages.en.menu] # It is possible to change the menu too.
@@ -112,7 +113,6 @@ PygmentsCodeFencesGuessSyntax = true # Enable syntax guessing for code fences wi
         [languages.cz.params]
             description = "Informace o James Lucktaylor"
             footercontent = "Zadejte zde text."
-            info = "Vývojové operace a inženýr platformy"
             keywords = "vývojář,inženýr,informace,osobní"
 
         # [languages.cz.menu]
