@@ -1,4 +1,5 @@
 # Created by https://www.gitignore.io/api/go,hugo,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=go,hugo,visualstudiocode
 
 ### Go ###
 # Binaries for programs and plugins
@@ -8,7 +9,7 @@
 *.so
 *.dylib
 
-# Test binary, build with `go test -c`
+# Test binary, built with `go test -c`
 *.test
 
 # Output of the go coverage tool, specifically when used with LiteIDE
@@ -19,12 +20,17 @@
 /Godeps/
 
 ### Hugo ###
-# Hugo binary
-hugo*
+# gitginore template for Hugo projects
+# website: https://gohugo.io
 
-# Generated files at default location
+# generated files by hugo
 /public/
-/resources/_gen
+/resources/_gen/
+
+# executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
 
 ### VisualStudioCode ###
 .vscode/*
@@ -32,6 +38,10 @@ hugo*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
 
 # End of https://www.gitignore.io/api/go,hugo,visualstudiocode
 
