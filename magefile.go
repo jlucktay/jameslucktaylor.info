@@ -16,12 +16,14 @@ const (
 )
 
 var (
+	// Default denotes Mage's default target when invoked without one explicitly.
 	Default = Def
+
+	// Aliases links short versions to longer target names.
 	Aliases = map[string]interface{}{
-		"c": Clean,
-		// 	"i":     Install,
-		// 	"build": Install,
-		// 	"ls":    List,
+		"b": WebApp.Build,
+		"c": WebApp.Clean,
+		"p": WebApp.Prune,
 	}
 
 	site = fmt.Sprintf("https://%s", domain)
@@ -34,24 +36,34 @@ const (
 )
 
 type (
+	// WebApp collects all of the targets involving the web app.
 	WebApp mg.Namespace
 )
 
-// Deploys and tests the web app.
+// Def is assigned as the 'Default' target, so it builds the web app.
 func Def() {
-	mg.Deps(WebApp.Deploy)
-	mg.Deps(Clean)
+	mg.Deps(WebApp.Build)
 }
 
-// Deploys the web app to Google Cloud using the SDK.
-// Assumes that credentials etc are already set up.
-func (WebApp) Deploy() error {
-	// return sh.Run("gcloud", "app", "deploy", fmt.Sprintf("--project=%s", gcpProject), "--quiet", "--verbosity=critical", "--promote")
-	return sh.Run("hugo", "--version")
+// Build the web app using Hugo.
+func (WebApp) Build() error {
+	return sh.RunV(
+		"hugo",
+		"--baseURL", "//hugo-dot-jameslucktaylor-info.appspot.com",
+		"--cleanDestinationDir",
+		"--enableGitInfo",
+		"--gc",
+		"--minify",
+		"--source", "hugo",
+		"--stepAnalysis",
+		"--templateMetrics",
+		"--templateMetricsHints",
+		"--verbose",
+	)
 }
 
-// Finds old versions of the web app which no longer have any traffic
-// allocation, and prunes them.
+// Prune will find old versions of the web app which no longer have any traffic
+// allocation, and delete them.
 func (WebApp) Prune() error {
 	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json", "--service=hugo")
 	if appVersionsErr != nil {
@@ -59,8 +71,10 @@ func (WebApp) Prune() error {
 	}
 
 	type appVersion struct {
-		Id            string
-		Traffic_split float32
+		// ID is the site version returned by the GCloud SDK.
+		ID string `json:"id"`
+		// TrafficSplit is the percentage of traffic directed at this version.
+		TrafficSplit float32 `json:"traffic_split"`
 	}
 
 	var appVersions []appVersion
@@ -72,8 +86,8 @@ func (WebApp) Prune() error {
 	versionsDeleteArgs := []string{"app", "versions", "delete"}
 
 	for _, av := range appVersions {
-		if av.Traffic_split == 0 {
-			versionsDeleteArgs = append(versionsDeleteArgs, av.Id)
+		if av.TrafficSplit == 0 {
+			versionsDeleteArgs = append(versionsDeleteArgs, av.ID)
 		}
 	}
 
@@ -86,7 +100,7 @@ func (WebApp) Prune() error {
 	return nil
 }
 
-// Cleans up various bits of cruft.
-func Clean() error {
-	return sh.Run("rm", "-rf", "public")
+// Clean will delete various bits of cruft.
+func (WebApp) Clean() error {
+	return sh.RunV("rm", "-rfv", "hugo/public")
 }
