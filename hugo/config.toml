@@ -1,4 +1,5 @@
-BaseURL = "//hugo.jameslucktaylor.info"
+# Seems broken, so it gets specified in magefile.go as well
+BaseURL = "//hugo-dot-jameslucktaylor-info.appspot.com"
 
 # https://themes.gohugo.io/hugo-coder/
 Theme = "coder"
