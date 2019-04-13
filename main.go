@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -36,7 +35,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	params := struct {
 		Greeting string
 	}{
-		fmt.Sprintf("%s", os.Getenv("GREETING")),
+		os.Getenv("GREETING"),
 	}
 
 	if r.Method == http.MethodGet {
