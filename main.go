@@ -40,7 +40,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodGet {
-		templates.Execute(w, params)
+		if errExec := templates.Execute(w, params); errExec != nil {
+			panic(errExec)
+		}
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
