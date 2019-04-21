@@ -31,10 +31,8 @@ div.social {
     padding: 5px;
 }
 
-img#logo {
+picture#me {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
-    width: 20%;
 }
