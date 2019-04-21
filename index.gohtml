@@ -40,9 +40,13 @@
 {{comment "<!-- GitHub ribbon -->"}}
 {{template "github.html"}}
 
-    <img alt="Me" id="logo" src="/static/og-image.png"
-        title="This site runs on Google Cloud using Go in App Engine!"
-        width="100" />
+{{comment "This site runs on Google Cloud using Go in App Engine!"}}
+
+    <a href="//docs.google.com/document/d/1ODjjBb2bt38gMAmZy-lE-iaOIUXS41BFkp0WA2_MTP4/edit?usp=sharing" title="CV">
+        <img alt="Me" id="logo" src="/static/og-image.png"
+            title="Click here for my CV!"
+            width="100" />
+    </a>
 
     <div id="greeting">{{.Greeting}}</div>
 
