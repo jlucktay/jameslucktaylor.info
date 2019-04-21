@@ -27,7 +27,7 @@ func main() {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// Redirects all invalid/unhandled URLs to the root homepage
 	if r.URL.Path != "/" {
-		http.Redirect(w, r, "/", http.StatusFound)
+		http.Redirect(w, r, "/", http.StatusFound) // 302
 		return
 	}
 
@@ -44,7 +44,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			panic(errExec)
 		}
 	} else {
-		w.WriteHeader(http.StatusMethodNotAllowed)
+		http.Error(w, "Only GET allowed.", http.StatusMethodNotAllowed) // 405
 	}
 }
 
@@ -62,6 +62,6 @@ func addHeaders(w http.ResponseWriter) {
 	}
 
 	for k, v := range headers {
-		w.Header().Add(k, v)
+		w.Header().Set(k, v)
 	}
 }
