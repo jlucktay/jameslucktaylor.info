@@ -11,7 +11,7 @@ import (
 var (
 	htmlFuncs = template.FuncMap{
 		"comment": func(s string) template.HTML {
-			return template.HTML(s)
+			return template.HTML("<!-- " + s + " -->")
 		},
 	}
 
