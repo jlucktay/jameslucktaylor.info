@@ -136,7 +136,6 @@ func Full() {
 
 // Installs Lighthouse globally, via NPM.
 func LighthouseInstall() {
-	sh.RunV("npm", "install", "-g", "lighthouse")
 	sh.RunV("npm", "update", "-g", "lighthouse")
 }
 
