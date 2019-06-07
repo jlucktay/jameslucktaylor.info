@@ -24,15 +24,90 @@ div#greeting {
 }
 
 div.social {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 5vh;
     width: 100%;
-}
-
-.fab {
-    padding: 5px;
 }
 
 picture#me {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Some fancy Font Awesome magic */
+/* Based on: https://codepen.io/fontawesome/pen/LXWgVx */
+
+/* This is the link or the element that will contain the two icons we want to toggle between */
+.toggle-icons {
+    display: block;
+    position: relative;
+}
+
+/* General styling for both icons - mostly positioning things absolutely to lay over each other */
+.toggle-icons .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: opacity .25s ease-in;
+}
+
+/* Set the icon we want to show by default */
+.toggle-icons .icon-default {
+    opacity: 1.0;
+}
+
+/* Set the icon we want to only show on hover or focus to be hidden by default */
+.toggle-icons .icon-hover {
+    opacity: 0;
+}
+
+/* Hover states flip the opacity values and thus display our hover-only icon */
+.toggle-icons:hover .icon-default,
+.toggle-icons:focus .icon-default {
+    opacity: 0;
+}
+
+.toggle-icons:hover .icon-hover,
+.toggle-icons:focus .icon-hover {
+    opacity: 1.0;
+}
+
+/* Space out the icons horizontally */
+.toggle-icons:not(:last-child) {
+    margin-right: 4rem;
+}
+
+/* Colouring icons when hovered over with their specific branding RGB values */
+.toggle-icons {
+    color: inherit;
+}
+
+/* GMail */
+.envelope-open .icon-hover {
+    color: rgb(212, 70, 56);
+}
+
+/* LinkedIn */
+.linkedin .icon-hover {
+    color: rgb(0, 119, 181);
+}
+
+/* Stack Overflow */
+.stack-overflow .icon-hover {
+    color: rgb(244, 128, 36);
+}
+
+/* Twitter */
+.twitter .icon-hover {
+    color: rgb(29, 161, 242);
+}
+
+/* Facebook */
+.facebook .icon-hover {
+    color: rgb(66, 103, 179);
 }
