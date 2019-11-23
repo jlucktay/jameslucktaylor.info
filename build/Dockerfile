@@ -1,3 +1,3 @@
-FROM alpine
+FROM scratch
 COPY quickstart.sh /
-CMD ["/quickstart.sh"]
+CMD [ "/quickstart.sh" ]

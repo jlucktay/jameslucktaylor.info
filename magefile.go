@@ -53,7 +53,11 @@ func Def() {
 // Deploys the web app to Google Cloud using the SDK.
 // Assumes that credentials etc are already set up.
 func (WebApp) Deploy() error {
-	return sh.Run("gcloud", "app", "deploy", fmt.Sprintf("--project=%s", gcpProject), "--quiet", "--verbosity=critical", "--promote")
+	return sh.Run("gcloud", "app", "deploy",
+		fmt.Sprintf("--project=%s", gcpProject),
+		"--promote",
+		"--quiet",
+		"--verbosity=info")
 }
 
 // Runs a quick responsiveness test against the deployed web app. Sends the output from 'hey' to stdout.
@@ -69,7 +73,9 @@ func (WebApp) TestLoad() error {
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
 func (WebApp) Prune() error {
-	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list", "--format=json")
+	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list",
+		"--format=json",
+		fmt.Sprintf("--project=%s", gcpProject))
 	if appVersionsErr != nil {
 		mg.Fatal(listAppVersionsExit, appVersionsErr)
 	}
@@ -187,7 +193,10 @@ func Zap() error {
 
 // Validates the structured data that the web app exposes.
 func ValidateData() {
-	curlOut, curlErr := sh.Output("curl", "--silent", "--header", "Accept: application/json", fmt.Sprintf("http://linter.structured-data.org/?url=%s", site))
+	curlOut, curlErr := sh.Output("curl",
+		"--silent",
+		"--header", "Accept: application/json",
+		fmt.Sprintf("http://linter.structured-data.org/?url=%s", site))
 	if curlErr != nil {
 		mg.Fatal(curlExit, curlErr)
 	}
