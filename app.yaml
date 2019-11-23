@@ -72,13 +72,3 @@ automatic_scaling:
     # min_pending_latency:
     target_cpu_utilization: 0.95
     target_throughput_utilization: 0.95
-
-skip_files:
-    - ^(.*/)?#.*#$
-    - ^(.*/)?.*~$
-    - ^(.*/)?.*\.py[co]$
-    - ^(.*/)?.*/RCS/.*$
-    - ^(.*/)?\..*$
-    - build/
-    - ^magefile.go$
-    - ^jameslucktaylor.info_.*\.report.html$

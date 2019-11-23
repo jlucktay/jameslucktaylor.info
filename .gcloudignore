@@ -1,0 +1,21 @@
+# Include the patterns in .gitignore
+#!include:.gitignore
+
+# Git metadata and Docker build things
+.git/
+build/
+
+# Dotfiles in the root
+/.*
+
+# Docs
+LICENSE
+README.md
+
+# Go plumbing
+go.mod
+go.sum
+magefile.go
+
+# GAE service definition
+app.yaml
