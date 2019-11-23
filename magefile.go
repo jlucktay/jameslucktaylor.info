@@ -170,7 +170,7 @@ func Validate() {
 
 // Runs up the web app locally.
 func Dev() error {
-	return sh.Run("dev_appserver.py", "app.yaml", "--support_datastore_emulator=true")
+	return sh.Run("go", "run", "main.go")
 }
 
 // Runs OWASP ZAP against the deployed web app.

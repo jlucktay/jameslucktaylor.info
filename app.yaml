@@ -1,9 +1,8 @@
 # app.yaml docs are here:
 # https://cloud.google.com/appengine/docs/standard/go/config/appref
 
-service: default
-runtime: go
-api_version: go1
+runtime: go113
+
 env: standard
 
 instance_class: F1

@@ -2,10 +2,9 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 	"os"
-
-	"google.golang.org/appengine" // Required external App Engine library
 )
 
 var (
@@ -21,7 +20,17 @@ var (
 
 func main() {
 	http.HandleFunc("/", indexHandler)
-	appengine.Main() // Starts the server to receive requests
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("Defaulting to port '%s'.", port)
+	}
+
+	log.Printf("Listening on port '%s'.", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
