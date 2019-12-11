@@ -16,6 +16,7 @@ README.md
 go.mod
 go.sum
 magefile.go
+*_test.go
 
 # GAE service definition
 app.yaml
