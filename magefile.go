@@ -108,6 +108,11 @@ func (WebApp) Prune() error {
 	return nil
 }
 
+// Runs unit tests.
+func Test() error {
+	return sh.RunV("go", "test", "-v")
+}
+
 // Cleans up various bits of cruft.
 func Clean() {
 	mg.Deps(DeleteLighthouseReports, WebApp.Prune)
