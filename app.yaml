@@ -1,7 +1,7 @@
 # app.yaml docs are here:
 # https://cloud.google.com/appengine/docs/standard/go/config/appref
 
-runtime: go113
+runtime: go112
 
 env: standard
 
