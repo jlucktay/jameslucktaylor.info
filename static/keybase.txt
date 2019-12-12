@@ -1,0 +1,53 @@
+https://keybase.io/jlucktay
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jameslucktaylor.info
+  * I am jlucktay (https://keybase.io/jlucktay) on keybase.
+  * I have a public key ASAQFo2-_DK8ska8ATpqYX8Sospz0UDTUqQN_a-11G7gjQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01207555fc8c2f99fc9736de9225a76acece95a7e9515c1a7f41307581973034b7b10a",
+      "host": "keybase.io",
+      "kid": "012010168dbefc32bcb246bc013a6a617f12a2ca73d140d352a40dfdafb5d46ee08d0a",
+      "uid": "35d40b6a5aa05423aeaa2a554c59a419",
+      "username": "jlucktay"
+    },
+    "merkle_root": {
+      "ctime": 1576162666,
+      "hash": "c90b0e43f310c51acde1568bcf7688fedd9b648df405e8ccd6bc7a2e5657ab4ed425de6ea64c576935438009acf20ace6a77f753d03427926e686f1aa788e2d9",
+      "hash_meta": "3642292b8ce7d72d2751af90013e70aaa35ca4e9dd0120c360b3fd64e054d890",
+      "seqno": 13417982
+    },
+    "service": {
+      "entropy": "zhFuprtBqos9kf6Xn3xbhBXA",
+      "hostname": "jameslucktaylor.info",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.1.1"
+  },
+  "ctime": 1576162694,
+  "expire_in": 504576000,
+  "prev": "b2b46917a6115fccdd43627068a3cb05c901005ad9979602e43bf85b62c402e4",
+  "seqno": 32,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgEBaNvvwyvLJGvAE6amF/EqLKc9FA01KkDf2vtdRu4I0Kp3BheWxvYWTESpcCIMQgsrRpF6YRX8zdQ2JwaKPLBckBAFrZl5YC5Dv4W2LEAuTEIC/VHTdosSR0GdFbbV2LzJgI8KrC5ZsrfOj2whIBVcahAgHCo3NpZ8RAH9dKxfRZ2N3OOCQ2UNmNyiSlMddCnBKbaalSxNP351xRELzlPwpDLYna99FBgwemWbGhk1IYjo0UBp3ye4dUAqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPQHm0AVB2k/6dJSN35uvG8wY9jSOYTh/VWyrT24BwSGo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jlucktay

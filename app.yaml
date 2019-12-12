@@ -10,6 +10,17 @@ instance_class: F1
 default_expiration: "10m"
 
 handlers:
+  # Special case for Keybase proof
+  - url: /.well-known/keybase.txt
+    http_headers:
+      Cache-Control: no-cache, no-store, must-revalidate
+      Pragma: no-cache
+      X-Content-Type-Options: nosniff
+    redirect_http_response_code: 301
+    secure: always
+    static_files: static/keybase.txt
+    upload: static/keybase.txt
+
   # Find the static files in the 'static' directory
   - url: /static
     http_headers:
