@@ -73,9 +73,12 @@ func (WebApp) TestLoad() error {
 // Finds old versions of the web app which no longer have any traffic
 // allocation, and prunes them.
 func (WebApp) Prune() error {
-	appVersionsOut, appVersionsErr := sh.Output("gcloud", "app", "versions", "list",
+	appVersionsOut, appVersionsErr := sh.Output(
+		"gcloud",
 		"--format=json",
-		fmt.Sprintf("--project=%s", gcpProject))
+		fmt.Sprintf("--project=%s", gcpProject),
+		"app", "versions", "list",
+	)
 	if appVersionsErr != nil {
 		mg.Fatal(listAppVersionsExit, appVersionsErr)
 	}
@@ -91,7 +94,10 @@ func (WebApp) Prune() error {
 		mg.Fatal(unmarshalAppVersionsExit, unmarshalErr)
 	}
 
-	versionsDeleteArgs := []string{"app", "versions", "delete"}
+	versionsDeleteArgs := []string{
+		fmt.Sprintf("--project=%s", gcpProject),
+		"app", "versions", "delete",
+	}
 
 	for _, av := range appVersions {
 		if av.Traffic_split == 0 {
