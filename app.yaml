@@ -1,7 +1,7 @@
 # app.yaml docs are here:
 # https://cloud.google.com/appengine/docs/standard/go/config/appref
 
-runtime: go112
+runtime: go113
 
 env: standard
 
@@ -75,11 +75,11 @@ env_variables:
 
 automatic_scaling:
   # max_concurrent_requests:
-  # max_idle_instances: 0
-  # max_instances: 0 # Zero disables this setting
+  max_idle_instances: 0
+  max_instances: 1 # Zero disables this setting
   # max_pending_latency:
   # min_idle_instances:
-  # min_instances: 0 # Note that you are charged for the number of instances specified whether they are receiving traffic or not
+  min_instances: 0 # Note that you are charged for the number of instances specified whether they are receiving traffic or not
   # min_pending_latency:
   target_cpu_utilization: 0.95
   target_throughput_utilization: 0.95
