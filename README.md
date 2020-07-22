@@ -1,5 +1,7 @@
 # jameslucktaylor.info
 
+**Archived and deprecated in favour of [my new site](https://github.com/jlucktay/jlucktay.dev) at <https://jlucktay.dev>.**
+
 My Go-powered website!
 
 Hosted on [Google Cloud](https://cloud.google.com)'s [App Engine](https://cloud.google.com/appengine/) under the [Go Standard Environment](https://cloud.google.com/appengine/docs/standard/go/).
